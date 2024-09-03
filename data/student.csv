@@ -1,0 +1,33 @@
+semester_name,semester_start_date,semester_end_date,nim,subject_name,subject_type,score
+Odd,2021-07-01,2021-12-31,2502017572,Algorithm and Programming,lab,82
+Odd,2021-07-01,2021-12-31,2502017572,Character Building: Pancasila,theory,96
+Odd,2021-07-01,2021-12-31,2502017572,Program Design Method,theory,87
+Odd,2021-07-01,2021-12-31,2502017572,Indonesian,theory,90
+Odd,2021-07-01,2021-12-31,2502017572,Introduction to Mobile Technology & Programming,theory,88
+Odd,2021-07-01,2021-12-31,2502017572,Discrete Mathematics,theory,70
+Odd,2021-07-01,2021-12-31,2502017572,Linear Algebra,theory,67
+Even,2022-01-01,2022-06-31,2502017572,Calculus,theory,75
+Even,2022-01-01,2022-06-31,2502017572,Scientific Computing,theory,81
+Even,2022-01-01,2022-06-31,2502017572,Basic Statistics,theory,80
+Even,2022-01-01,2022-06-31,2502017572,Data Structures,lab,91
+Even,2022-01-01,2022-06-31,2502017572,Entrepreneurship: Ideation,theory,93
+Even,2022-01-01,2022-06-31,2502017572,Wearable Technology,theory,80
+Odd,2022-07-01,2022-12-31,2502017572,Character Building: Kewarganegaraan,theory,87
+Odd,2022-07-01,2022-12-31,2502017572,Artificial Intelligence,theory,71
+Odd,2022-07-01,2022-12-31,2502017572,Database Technology,lab,85
+Odd,2022-07-01,2022-12-31,2502017572,Computational Physics,lab,78
+Odd,2022-07-01,2022-12-31,2502017572,Algorithm Design and Analysis,lab,77
+Odd,2022-07-01,2022-12-31,2502017572,Mobile Cloud Computing,lab,83
+Even,2023-01-01,2023-06-31,2502017572,Compilation Techniques,theory,81
+Even,2023-01-01,2023-06-31,2502017572,Software Engineering,theory,85
+Even,2023-01-01,2023-06-31,2502017572,Human and Computer Interaction,lab,91
+Even,2023-01-01,2023-06-31,2502017572,Mobile Community Solution,lab,93
+Even,2023-01-01,2023-06-31,2502017572,Computer Networks,lab,76
+Even,2023-01-01,2023-06-31,2502017572,Computational Biology,lab,90
+Odd,2023-07-01,2023-12-31,2502017572,Research Methodology in Computer Science,theory,77
+Odd,2023-07-01,2023-12-31,2502017572,Operating System,theory,80
+Odd,2023-07-01,2023-12-31,2502017572,Entrepreneurship: Market Validation,theory,94
+Odd,2023-07-01,2023-12-31,2502017572,Mobile Multimedia Solution,lab,86
+Odd,2023-07-01,2023-12-31,2502017572,Character Building: Agama,theory,78
+Odd,2023-07-01,2023-12-31,2502017572,Web Design,theory,92
+Odd,2023-07-01,2023-12-31,2502017572,Embedded System and Internet of Things,theory,85

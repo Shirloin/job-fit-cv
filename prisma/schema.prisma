@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String                @id @default(uuid())
+  username             String                @unique
+  password             String
+  role                 String?
+  nim                  String?               @unique
+  name                 String?
+  email                String?
+  gpa                  Float?
+  image                String?
+  campus               String?
+  programId            String?
+  program              Program?              @relation(fields: [programId], references: [id])
+  studentSubjectScores StudentSubjectScore[]
+  recommendedCompanies Company[]
+  cv                   Json?
+}
+
+model Company {
+  id                      String                    @id @default(uuid())
+  name                    String
+  program                 Program                   @relation(fields: [programId], references: [id])
+  programId               String
+  recomendedToUsers       User[]
+  position                Position?                 @relation(fields: [positionId], references: [id])
+  positionId              String?
+  CompanyPositionRequired CompanyPositionRequired[]
+}
+
+model Position {
+  id                      String                    @id @default(uuid())
+  name                    String                    @unique
+  CompanyPositionRequired CompanyPositionRequired[]
+  Company                 Company[]
+}
+
+model Program {
+  id                      String                    @id @default(uuid())
+  // academicCode            String                    @unique
+  name                    String                    @unique
+  users                   User[]
+  CompanyPositionRequired CompanyPositionRequired[]
+  Company                 Company[]
+}
+
+model CompanyPositionRequired {
+  position   Position @relation(fields: [positionId], references: [id])
+  positionId String
+  company    Company  @relation(fields: [companyId], references: [id])
+  companyId  String
+  program    Program  @relation(fields: [programId], references: [id])
+  programId  String
+
+  @@unique([positionId, companyId, programId])
+}
+
+model Subject {
+  id                   String                @id @default(uuid())
+  name                 String                @unique
+  type                 String
+  studentSubjectScores StudentSubjectScore[]
+}
+
+model Semester {
+  id                   String                @id @default(uuid())
+  name                 String
+  startDate            DateTime              @db.Date
+  endDate              DateTime              @db.Date
+  studentSubjectScores StudentSubjectScore[]
+}
+
+model StudentSubjectScore {
+  score      Float
+  studentId  String
+  student    User     @relation(fields: [studentId], references: [id])
+  subjectId  String
+  subject    Subject  @relation(fields: [subjectId], references: [id])
+  semesterId String
+  semester   Semester @relation(fields: [semesterId], references: [id])
+
+  @@unique([studentId, subjectId, semesterId])
+}
