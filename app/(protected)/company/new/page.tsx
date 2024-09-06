@@ -50,7 +50,7 @@ export default function CreateCompanyPage() {
   const [position, setPosition] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [program, setProgram] = useState<string>("");
-  const { setIsLoading } = useLoading()
+  const { setIsLoading } = useLoading();
 
   const handleSubmit = async () => {
     try {
@@ -59,30 +59,30 @@ export default function CreateCompanyPage() {
         position,
         program
       );
-      toast.success("Company inserted")
+      toast.success("Company inserted");
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleExcelSubmit = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (!file) {
-      toast.error("Please choose a file")
-      return
+      toast.error("Please choose a file");
+      return;
     }
     try {
-      const response = await CompanyService.insertCompanyUsingFile(file)
-      setIsLoading(false)
-      toast.success(response.data.msg)
+      const response = await CompanyService.insertCompanyUsingFile(file);
+      setIsLoading(false);
+      toast.success(response.data.msg);
     } catch (error) {
-      setIsLoading(false)
-      console.log(error)
+      setIsLoading(false);
+      console.log(error);
     } finally {
-      toast.success("Account Inserted")
-      setFile(null)
+      toast.success("Account Inserted");
+      setFile(null);
     }
-  }
+  };
 
   return (
     <>
@@ -100,9 +100,9 @@ export default function CreateCompanyPage() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <Card className="rounded-lg border-none mt-6">
+        <Card className="rounded-lg border-none mt-6 ">
           <CardContent className="p-6">
-            <div className="flex justify-start items-start min-h-[calc(100vh-56px-64px-20px-24px-56px-48px)]">
+            <div className="flex justify-start items-start">
               <div className="w-full flex flex-col relative">
                 <div className="w-full flex flex-col gap-2">
                   <Label>Name</Label>
@@ -171,7 +171,7 @@ export default function CreateCompanyPage() {
         </Card>
         <Card className="rounded-lg border-none mt-6">
           <CardContent className="p-6">
-            <div className="w-full flex flex-col gap-2"  >
+            <div className="w-full flex flex-col gap-2">
               <h1 className="mb-6 font-bold text-xl">Insert Using CSV</h1>
               <Input
                 type="file"
@@ -184,13 +184,11 @@ export default function CreateCompanyPage() {
               />
               <Button
                 onClick={handleExcelSubmit}
-
                 className="self-start w-fit px-6 my-2 bg-green-500 hover:bg-green-500"
                 variant={"default"}
               >
                 Save
               </Button>
-
             </div>
           </CardContent>
         </Card>

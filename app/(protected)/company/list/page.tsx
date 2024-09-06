@@ -45,10 +45,7 @@ export default function CompanyListPage() {
 
   const isLoading =
     isLoadingCompanies || isLoadingPrograms || isLoadingPositions;
-  const isError =
-    isErrorCompanies ||
-    isErrorPrograms ||
-    isErrorPositions
+  const isError = isErrorCompanies || isErrorPrograms || isErrorPositions;
 
   return (
     <ContentLayout title="Company List">
@@ -71,7 +68,10 @@ export default function CompanyListPage() {
           <div className="mb-2 text-destructive text-xs font-semibold">
             <p>Note:</p>
             <p>Company with recommended status is just a suggestion</p>
-            <p>You are free to apply to any company that aligns with your interests and carrer goals</p>
+            <p>
+              You are free to apply to any company that aligns with your
+              interests and carrer goals
+            </p>
           </div>
           <div className="flex justify-center items-start min-h-[calc(100vh-56px-64px-20px-24px-56px-48px)]">
             {isLoading ? (
