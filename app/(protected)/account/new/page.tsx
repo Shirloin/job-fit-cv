@@ -52,7 +52,7 @@ export default function CreateStudentPage() {
   const [roleOpen, setRoleOpen] = useState(false);
   const [majorOpen, setMajorOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
-  const { isLoading, setIsLoading } = useLoading()
+  const { isLoading, setIsLoading } = useLoading();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -61,34 +61,39 @@ export default function CreateStudentPage() {
   };
 
   const handleSubmit = async () => {
-    setIsLoading(true)
     try {
-      const user = await UserService.createAccount(form.username, form.name, form.role, form.email, form.program, form.campus)
-      toast.success("Create Account Success")
+      const user = await UserService.createAccount(
+        form.username,
+        form.name,
+        form.role,
+        form.campus,
+        form.email,
+        form.program
+      );
+      toast.success("Create Account Success");
     } catch (error: any) {
-      toast.error(error.response.data.msg)
+      toast.error(error.response.data.msg);
     }
-    setIsLoading(false)
   };
   const handleCsvSubmit = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (!file) {
-      toast.error("Please choose a file")
-      return
+      toast.error("Please choose a file");
+      return;
     }
 
     try {
-      const response = await UserService.insertAccountUsingFile(file)
-      setIsLoading(false)
-      toast.success(response.data.msg)
+      const response = await UserService.insertAccountUsingFile(file);
+      setIsLoading(false);
+      toast.success(response.data.msg);
     } catch (error) {
-      setIsLoading(false)
-      console.log(error)
+      setIsLoading(false);
+      console.log(error);
     } finally {
-      toast.success("Account Inserted")
-      setFile(null)
+      toast.success("Account Inserted");
+      setFile(null);
     }
-  }
+  };
 
   return (
     <>
@@ -123,6 +128,13 @@ export default function CreateStudentPage() {
                     className="w-full"
                     placeholder="Name"
                     name="name"
+                    onChange={handleChange}
+                  />
+                  <Label>Email</Label>
+                  <Input
+                    className="w-full"
+                    placeholder="Email"
+                    name="email"
                     onChange={handleChange}
                   />
                   <Label>Campus</Label>
@@ -235,7 +247,7 @@ export default function CreateStudentPage() {
         </Card>
         <Card className="rounded-lg border-none mt-6">
           <CardContent className="p-6">
-            <div className="w-full flex flex-col gap-2"  >
+            <div className="w-full flex flex-col gap-2">
               <h1 className="mb-6 font-bold text-xl">Insert Using CSV</h1>
               <Input
                 type="file"
@@ -248,17 +260,15 @@ export default function CreateStudentPage() {
               />
               <Button
                 onClick={handleCsvSubmit}
-
                 className="self-start w-fit px-6 my-2 bg-green-500 hover:bg-green-500"
                 variant={"default"}
               >
                 Save
               </Button>
-
             </div>
           </CardContent>
         </Card>
-      </ContentLayout >
+      </ContentLayout>
     </>
   );
 }

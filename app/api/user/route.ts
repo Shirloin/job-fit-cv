@@ -10,6 +10,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
     const { username, name, role, email, program, campus } = await req.json();
+    // console.log(username, name, role, email, program, campus)
 
     if (username.trim().length === 0 ||
         name.trim().length === 0 ||
@@ -41,8 +42,8 @@ export async function POST(req: NextRequest) {
     if (program.trim().length > 0) {
         major = await getProgramByName(program)
     }
-    const user = await createAccount(username, name, role, email, major?.id)
-    return new NextResponse(JSON.stringify({ user: user }))
+    const user = await createAccount(username, name, role, email, major?.id, campus)
+    return new NextResponse(JSON.stringify({ user: user, message: "Account Inserted" }))
 
 }
 export async function PUT(req: NextRequest) {
@@ -108,7 +109,7 @@ async function getProgramByName(program: string) {
     return await ProgramRepository.getProgramByName(program)
 }
 
-async function createAccount(username: string, name: string, role: string, email?: string, programId?: string) {
-    return await UserRepository.createAccount(username, name, role, email, programId)
+async function createAccount(username: string, name: string, role: string, email?: string, programId?: string, campus?: string) {
+    return await UserRepository.createAccount(username, name, role, email, programId, campus)
 }
 

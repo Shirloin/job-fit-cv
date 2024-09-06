@@ -10,9 +10,7 @@ import { useLoading } from "@/providers/LoadingProvider";
 import { useProfileStore } from "@/store/profile-store";
 
 export default function PersonalForm() {
-  const {
-    profile, updateData
-  } = useProfileStore();
+  const { profile, updateData } = useProfileStore();
   const { skills } = useSkillStore();
   const { isLoading, setIsLoading } = useLoading();
   const handleGenerateProfileSummary = async () => {
@@ -31,10 +29,13 @@ export default function PersonalForm() {
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      updateData("image", imageUrl);
+    const reader = new FileReader();
+    if (event.target.files && event.target.files?.[0]) {
+      reader.onloadend = () => {
+        const url = reader.result as string;
+        updateData("image", url);
+      };
+      reader.readAsDataURL(event.target.files[0]);
     }
   };
 
@@ -50,7 +51,12 @@ export default function PersonalForm() {
                   src={profile.image}
                 ></AvatarImage>
               </Avatar>
-              <Input onChange={handleImageChange} type="file" className="hidden" accept="image/*" />
+              <Input
+                onChange={handleImageChange}
+                type="file"
+                className="hidden"
+                accept="image/*"
+              />
             </Label>
           </div>
           <div className="max-w-72 w-full">

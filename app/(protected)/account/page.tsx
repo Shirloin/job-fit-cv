@@ -47,44 +47,44 @@ export default function AccountPage() {
         <Card className="rounded-lg border mt-6">
           <CardContent className="p-6">
             <div className="flex justify-center items-start min-h-[calc(100vh-56px-64px-20px-24px-56px-48px)]">
-              <div className="max-w-xl w-full flex flex-col mr-10">
-                <div className="w-full flex items-start">
-                  <Avatar className="w-24 h-24 mr-4">
+              <div className="max-w-3xl w-full flex justify-between items-start gap-10 ">
+                <div className="flex items-start">
+                  <Avatar className="w-14 h-14 md:w-24 md:h-24 mr-4">
                     <AvatarImage
                       className="w-full h-full object-cover"
                       src={user?.image}
                     ></AvatarImage>
                   </Avatar>
                   <div className="">
-                    <h1 className="text-2xl font-bold">
+                    <h1 className="text-sm md:text-2xl font-bold">
                       {user.name && user.name}
                     </h1>
-                    <h1 className="text-xs font-semibold">
+                    <h1 className="text-m sm:text-xs font-semibold">
                       {user.nim && user.nim}
                     </h1>
-                    <h1 className="text-xs font-semibold">
+                    <h1 className="text-m sm:text-xs font-semibold">
                       {user.email && user.email}
                     </h1>
-                    <h1 className="text-xs font-semibold">
+                    <h1 className="text-m sm:text-xs font-semibold">
                       {user.gpa && <>GPA: {user.gpa}</>}
                     </h1>
                   </div>
                 </div>
                 {user.role === "student" && (
-                  <Accordion type="single" collapsible className="w-full mt-6">
+                  <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                       <AccordionTrigger>Saved CV</AccordionTrigger>
                       <AccordionContent>
                         <SavedCV />
                       </AccordionContent>
                     </AccordionItem>
-                    <AccordionItem value="item-2">
+                    {/* <AccordionItem value="item-2">
                       <AccordionTrigger>Grade</AccordionTrigger>
                       <AccordionContent>
                         <Score />
                       </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-3">
+                    </AccordionItem> */}
+                    <AccordionItem value="item-2">
                       <AccordionTrigger>Change Password</AccordionTrigger>
                       <AccordionContent>
                         <ChangePassword />

@@ -28,7 +28,7 @@ export default auth(async (req) => {
   const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
 
 
-  if (isApiAuthRoute) {
+  if (nextUrl.pathname.startsWith("/api/")) {
     return NextResponse.next();
   }
 

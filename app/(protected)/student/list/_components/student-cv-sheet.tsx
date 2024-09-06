@@ -28,14 +28,14 @@ export default function StudentCVSheet({
   student,
   ...props
 }: StudentCVSheetProps) {
-  const { data: cv, isLoading, isError } = useFetchStudentCV(student.id!);
+  const { data: cv, isLoading, isError } = useFetchStudentCV(student.nim!);
 
   const templates = [
     <FirstTemplate key={1} cv={cv} />,
     <SecondTemplate key={2} cv={cv} />,
     <ThirdTemplate key={3} cv={cv} />,
     <FourthTemplate key={4} cv={cv} />,
-    <FifthTemplate key={5} cv={cv} />
+    <FifthTemplate key={5} cv={cv} />,
   ];
   const target = useRef(null);
   const handleDownloadPDF = async () => {
@@ -82,16 +82,14 @@ export default function StudentCVSheet({
       <Sheet {...props}>
         <SheetContent className="min-w-[400px] w-fit  h-full  overflow-auto">
           <SheetHeader>
-            {
-              cv ?
-                <SheetTitle>{student.name} CV&apos;s</SheetTitle>
-                :
-                <SheetTitle>{student.name}</SheetTitle>
-            }
+            {cv ? (
+              <SheetTitle>{student.name} CV&apos;s</SheetTitle>
+            ) : (
+              <SheetTitle>{student.name}</SheetTitle>
+            )}
             <SheetDescription></SheetDescription>
           </SheetHeader>
-          {
-            cv &&
+          {cv && (
             <>
               <div className=" w-fit h-fit border border-primary rounded-xl">
                 <div ref={target} className="w-full h-full p-4">
@@ -109,7 +107,7 @@ export default function StudentCVSheet({
                 </Button>
               </div>
             </>
-          }
+          )}
         </SheetContent>
       </Sheet>
     </>

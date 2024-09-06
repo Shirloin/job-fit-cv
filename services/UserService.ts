@@ -54,6 +54,7 @@ export class UserService {
     email?: string,
     program?: string,
   ) {
+    console.log(username, name, role, email, program, campus)
     return axios.post(`${process.env.NEXT_PUBLIC_BASE_PATH}/api/user`, {
       username,
       name,

@@ -11,7 +11,8 @@ export default class UserRepository {
     name: string,
     role: string,
     email?: string,
-    programId?: string
+    programId?: string,
+    campus?: string,
   ) {
     return await SCHEMA.create({
       data: {
@@ -26,6 +27,7 @@ export default class UserRepository {
             id: programId,
           },
         },
+        campus: campus
       },
     });
   }
@@ -69,10 +71,10 @@ export default class UserRepository {
     });
   }
 
-  static async getCV(id: string) {
+  static async getCV(nim: string) {
     return await SCHEMA.findUnique({
       where: {
-        id: id,
+        nim: nim,
       },
       select: {
         cv: true,
@@ -107,6 +109,22 @@ export default class UserRepository {
     return await SCHEMA.findFirst({
       where:
         { email: email }
+    })
+  }
+
+  static async getUserRecommendedCompany(nim: string) {
+    return await SCHEMA.findFirst({
+      where: {
+        nim: nim
+      },
+      select: {
+        recommendedCompanies: {
+          include: {
+            position: true,
+            program: true
+          }
+        },
+      },
     })
   }
 

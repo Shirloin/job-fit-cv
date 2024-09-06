@@ -36,7 +36,7 @@ export default function ChangePassword() {
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setCurrentPassword(e.target.value);
             }}
-            className="mt-1"
+            className="mb-4"
             placeholder=""
             id="current-password"
             type="password"
@@ -47,7 +47,7 @@ export default function ChangePassword() {
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setNewPassword(e.target.value);
             }}
-            className="mt-1"
+            className="mb-4"
             placeholder=""
             id="new-password"
             type="password"
@@ -58,14 +58,12 @@ export default function ChangePassword() {
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setConfirmPassword(e.target.value);
             }}
-            className="mt-1"
+            className="mb-4"
             placeholder=""
             id="confirm-password"
             type="password"
           />
-          <Button onClick={handleSubmit} className="mt-4">
-            Save
-          </Button>
+          <Button onClick={handleSubmit}>Save</Button>
         </CardContent>
       </Card>
     </>
