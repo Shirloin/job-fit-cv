@@ -37,9 +37,9 @@ export async function POST(req: NextRequest) {
 
         for (const row of rows) {
 
-            const comapanyName = row["COMPANY NAME"]
-            const positionName = row["POSITION"]
-            const programName = row["PROGRAM"]
+            const comapanyName = row["Name"]
+            const positionName = row["Position"]
+            const programName = row["Program"]
             try {
                 const company = await insertCompany(comapanyName, programName, positionName)
                 companies.push(company)
@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
                 continue
             }
         }
+
         return NextResponse.json({ msg: "Companies Success Inserted", companies: companies });
     } catch (error) {
         console.error("Error processing file:", error);

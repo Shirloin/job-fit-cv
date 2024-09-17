@@ -9,7 +9,7 @@ interface CompanyData {
 }
 
 export async function seedCompany() {
-    const filePath = '../../data/List perusahaan.csv';
+    const filePath = 'data/List perusahaan.csv';
 
     if (!fs.existsSync(filePath)) {
         console.error(`File not found: ${filePath}`);

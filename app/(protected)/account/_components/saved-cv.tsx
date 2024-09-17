@@ -1,5 +1,8 @@
 "use client";
+import FifthTemplate from "@/components/cv-templates/FifthTemplate/page";
 import FirstTemplate from "@/components/cv-templates/FirstTemplate/page";
+import FourthTemplate from "@/components/cv-templates/FourthTemplate/page";
+import SecondTemplate from "@/components/cv-templates/SecondTemplate/page";
 import ThirdTemplate from "@/components/cv-templates/ThirdTemplate/page";
 import { Button } from "@/components/ui/button";
 import { useFetchUserCV } from "@/hooks/use-fetch-data";
@@ -26,7 +29,10 @@ export default function SavedCV() {
   } = useFetchUserCV();
   const templates = [
     <FirstTemplate key={1} cv={cv} />,
+    <SecondTemplate key={2} cv={cv} />,
     <ThirdTemplate key={3} cv={cv} />,
+    <FourthTemplate key={4} cv={cv} />,
+    <FifthTemplate key={5} cv={cv} />,
   ];
   const router = useRouter();
   const setTemplate = useTemplateStore((state) => state.setTemplate);
@@ -41,7 +47,7 @@ export default function SavedCV() {
     if (cv) {
       setTemplate(cv.index);
       const profile = cv.profile as TProfile;
-      setProfileStore(profile)
+      setProfileStore(profile);
       const experiences = cv.experiences as TExperience[];
       setExperienceStore(experiences);
       const educations = cv.educations as TEducation[];

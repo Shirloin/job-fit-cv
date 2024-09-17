@@ -1,13 +1,10 @@
 version: "3.8"
 services:
   app:
-    image: job-fit-cv
+    image: riccardo006/job-fit-cv:latest
     container_name: job-fit-cv
-    build:
-      context: ./
-      dockerfile: Dockerfile
     env_file:
-      - .env.prod
+      - .env
     ports:
       - "5001:3000"
     networks:

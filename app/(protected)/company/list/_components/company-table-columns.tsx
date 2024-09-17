@@ -19,9 +19,7 @@ import UpdateCompanySheet from "./update-company-sheet";
 import { TProgram } from "@/types/program";
 import { useCurrentRole } from "@/hooks/use-current-role";
 
-export function getCompanyColumns(
-  programs: TProgram[],
-): ColumnDef<TCompany>[] {
+export function getCompanyColumns(programs: TProgram[]): ColumnDef<TCompany>[] {
   return [
     {
       accessorKey: "name",
@@ -108,7 +106,8 @@ export function getCompanyColumns(
                     </DropdownMenuItem>
                   </>
                 ) : (
-                  <DropdownMenuItem>Apply</DropdownMenuItem>
+                  <></>
+                  // <DropdownMenuItem>Apply</DropdownMenuItem>
                 )}
               </DropdownMenuContent>
             </DropdownMenu>

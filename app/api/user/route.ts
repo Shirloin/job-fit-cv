@@ -2,16 +2,18 @@ import UserRepository from "@/repositories/UserRepository";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import ProgramRepository from "@/repositories/ProgramRepository";
+import { cors } from "@/lib/cors";
 
 export async function GET(req: NextRequest) {
+    const res = new NextResponse()
+    if (cors(req, res)) return;
     const users = await getAllStudent();
+
     return NextResponse.json(users);
 }
 
 export async function POST(req: NextRequest) {
     const { username, name, role, email, program, campus } = await req.json();
-    // console.log(username, name, role, email, program, campus)
-
     if (username.trim().length === 0 ||
         name.trim().length === 0 ||
         role.trim().length === 0
