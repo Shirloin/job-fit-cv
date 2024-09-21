@@ -4,7 +4,7 @@ import csvParser from 'csv-parser'
 import { faker } from '@faker-js/faker'
 
 export async function seedStudentScore() {
-    const filePath = 'data/student.csv';
+    const filePath = process.env.APP_ENV === "production" ? "../../data/student.csv" : 'data/student.csv';
 
     if (!fs.existsSync(filePath)) {
         console.error(`File not found: ${filePath}`);

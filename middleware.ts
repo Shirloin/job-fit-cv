@@ -14,7 +14,38 @@ import { getToken, GetTokenParams } from "next-auth/jwt";
 
 const { auth } = NextAuth(authConfig);
 
+const corsOptions: {
+  allowedMethods: string[];
+  allowedOrigins: string[];
+  allowedHeaders: string[];
+  exposedHeaders: string[];
+  maxAge?: number;
+  credentials: boolean;
+} = {
+  allowedMethods: (process.env?.ALLOWED_METHODS || "").split(","),
+  allowedOrigins: (process.env?.ALLOWED_ORIGIN || "").split(","),
+  allowedHeaders: (process.env?.ALLOWED_HEADERS || "").split(","),
+  exposedHeaders: (process.env?.EXPOSED_HEADERS || "").split(","),
+  maxAge: process.env?.MAX_AGE && parseInt(process.env?.MAX_AGE) || undefined,
+  credentials: process.env?.CREDENTIALS == "true",
+};
+
 export default auth(async (req) => {
+  const res = NextResponse.next();
+
+  const origin = req.headers.get('origin') ?? ''
+  console.log(origin)
+  if (corsOptions.allowedOrigins.includes('*') || corsOptions.allowedOrigins.includes(origin)) {
+  }
+  res.headers.set('Access-Control-Allow-Origin', "https://job-fit-cv.shirloin.my.id");
+  res.headers.set("Access-Control-Allow-Credentials", corsOptions.credentials.toString());
+  res.headers.set("Access-Control-Allow-Methods", corsOptions.allowedMethods.join(","));
+  res.headers.set("Access-Control-Allow-Headers", corsOptions.allowedHeaders.join(","));
+  res.headers.set("Access-Control-Expose-Headers", corsOptions.exposedHeaders.join(","));
+  res.headers.set("Access-Control-Max-Age", corsOptions.maxAge?.toString() ?? "");
+
+
+
   const { nextUrl } = req;
 
   const isLoggedIn = !!req.auth;
@@ -29,14 +60,14 @@ export default auth(async (req) => {
 
 
   if (nextUrl.pathname.startsWith("/api/")) {
-    return NextResponse.next();
+    return res
   }
 
   if (isAuthRoute) {
     if (isLoggedIn) {
       return NextResponse.redirect(new URL("/", nextUrl));
     }
-    return NextResponse.next();
+    return res
   }
 
   if (!isLoggedIn && !isPublicRoute) {
@@ -57,7 +88,7 @@ export default auth(async (req) => {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  return NextResponse.next();
+  return res
 });
 
 // Optionally, don't invoke Middleware on some paths

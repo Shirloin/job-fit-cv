@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 import ProgramRepository from "@/repositories/ProgramRepository";
 
 export async function GET(req: NextRequest) {
-    const res = new NextResponse()
     const users = await getAllStudent();
 
     return NextResponse.json(users);
