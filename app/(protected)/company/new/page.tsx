@@ -61,7 +61,7 @@ export default function CreateCompanyPage() {
       );
       toast.success("Company inserted");
     } catch (error) {
-      console.log(error);
+      return;
     }
   };
 
@@ -77,7 +77,6 @@ export default function CreateCompanyPage() {
       toast.success(response.data.msg);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
     } finally {
       toast.success("Account Inserted");
       setFile(null);

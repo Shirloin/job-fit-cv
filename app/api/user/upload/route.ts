@@ -23,7 +23,6 @@ export async function POST(req: NextRequest) {
         const sheetNames = workbook.SheetNames;
         const sheet = workbook.Sheets[sheetNames[0]];
         const data: string[][] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-        console.log(data[0])
         if (data.length === 0) {
             return NextResponse.json({ error: "No data found in the file" }, { status: 400 });
         }

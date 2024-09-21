@@ -119,7 +119,7 @@ export default function CreateCVPage() {
         );
       toast.success('CV has been saved');
     } catch (error) {
-      console.log(error);
+      return
     }
     setIsLoading(false)
   };

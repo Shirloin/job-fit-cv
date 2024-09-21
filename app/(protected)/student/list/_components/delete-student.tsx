@@ -16,7 +16,6 @@ export default function DeleteStudent({ student }: DeleteStudentProps) {
     const handleDelete = async () => {
         try {
             const response = await StudentService.deleteStudent(student.id)
-            console.log(response)
             toast.success("Student Deleted")
             queryClient.invalidateQueries({ queryKey: ["students"] })
         } catch (error) {

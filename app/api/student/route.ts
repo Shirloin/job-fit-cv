@@ -23,7 +23,6 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
     const { id } = await req.json()
-    console.log(id)
     const user = await deleteStudent(id)
     return new NextResponse(JSON.stringify({ user: user }), { status: 200 })
 }

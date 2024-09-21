@@ -88,7 +88,6 @@ export default function CreateStudentPage() {
       toast.success(response.data.msg);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
     } finally {
       toast.success("Account Inserted");
       setFile(null);

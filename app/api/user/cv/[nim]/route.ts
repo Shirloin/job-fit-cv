@@ -3,7 +3,6 @@ import UserRepository from "@/repositories/UserRepository";
 
 export async function GET(req: NextRequest, { params }: { params: { nim: string } }) {
     const { nim } = params;
-    console.log(nim);
 
     try {
         const cv = await getCV(nim);

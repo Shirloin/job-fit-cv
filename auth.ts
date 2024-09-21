@@ -47,9 +47,8 @@ export const {
       return token;
     },
     async authorized({ auth }) {
-      console.log("Auth: ", auth)
       return !!auth
     }
   },
-  trustHost: true,
+  trustHost: process.env.APP_ENV === 'production' ? true : false,
 });

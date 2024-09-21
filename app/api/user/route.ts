@@ -2,11 +2,9 @@ import UserRepository from "@/repositories/UserRepository";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import ProgramRepository from "@/repositories/ProgramRepository";
-import { cors } from "@/lib/cors";
 
 export async function GET(req: NextRequest) {
     const res = new NextResponse()
-    if (cors(req, res)) return;
     const users = await getAllStudent();
 
     return NextResponse.json(users);

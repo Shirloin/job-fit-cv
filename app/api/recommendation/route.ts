@@ -29,7 +29,6 @@ export async function POST(req: NextRequest) {
   );
   const validCompanies = companies.filter((company) => company != null);
   const user = await setUserRecommendedCompany(userId, validCompanies);
-  console.log(user);
   return NextResponse.json({ user });
 }
 
