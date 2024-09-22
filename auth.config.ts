@@ -17,9 +17,12 @@ export default {
           throw new Error("All fields must be filleds");
         }
 
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findFirst({
           where: {
-            username: username,
+            username: {
+              equals: username,
+              mode: 'insensitive',
+            },
           }
         });
         if (!user) {

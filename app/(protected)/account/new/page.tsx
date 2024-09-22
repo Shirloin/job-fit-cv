@@ -31,7 +31,7 @@ import { useLoading } from "@/providers/LoadingProvider";
 import { UserService } from "@/services/UserService";
 import { ChevronsUpDown } from "lucide-react";
 import Link from "next/link";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import readXlsxFile from "read-excel-file";
 
@@ -53,6 +53,7 @@ export default function CreateStudentPage() {
   const [majorOpen, setMajorOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const { isLoading, setIsLoading } = useLoading();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -83,7 +84,7 @@ export default function CreateStudentPage() {
       campus: "",
     })
   };
-  const handleCsvSubmit = async () => {
+  const handleExcelSubmit = async () => {
     setIsLoading(true);
     if (!file) {
       toast.error("Please choose a file");
@@ -94,11 +95,13 @@ export default function CreateStudentPage() {
       const response = await UserService.insertAccountUsingFile(file);
       setIsLoading(false);
       toast.success(response.data.msg);
-    } catch (error) {
-      setIsLoading(false);
+    } catch (error:any) {
+      toast.error(error.response.data.msg)
     } finally {
+      setIsLoading(false);
       toast.success("Account Inserted");
       setFile(null);
+      fileInputRef.current!.value = "";
     }
   };
 
@@ -128,6 +131,7 @@ export default function CreateStudentPage() {
                     className="w-full"
                     placeholder="Username"
                     name="username"
+                    value={form.username}
                     onChange={handleChange}
                   />
                   <Label>Name</Label>
@@ -135,6 +139,7 @@ export default function CreateStudentPage() {
                     className="w-full"
                     placeholder="Name"
                     name="name"
+                    value={form.name}
                     onChange={handleChange}
                   />
                   <Label>Email</Label>
@@ -142,6 +147,7 @@ export default function CreateStudentPage() {
                     className="w-full"
                     placeholder="Email"
                     name="email"
+                    value={form.email}
                     onChange={handleChange}
                   />
                   <Label>Campus</Label>
@@ -149,6 +155,7 @@ export default function CreateStudentPage() {
                     className="w-full"
                     placeholder="Campus"
                     name="campus"
+                    value={form.campus}
                     onChange={handleChange}
                   />
                   <Label>Major</Label>
@@ -157,7 +164,7 @@ export default function CreateStudentPage() {
                       <Button
                         variant="outline"
                         role="combobox"
-                        aria-expanded={majorOpen}
+                        aria-expanded={majorOpen} 
                         className="w-full justify-between my-2"
                       >
                         {form.program !== "" ? form.program : "Major"}
@@ -257,6 +264,7 @@ export default function CreateStudentPage() {
             <div className="w-full flex flex-col gap-2">
               <h1 className="mb-6 font-bold text-xl">Insert Using .xlsx</h1>
               <Input
+              ref={fileInputRef}
                 type="file"
                 accept=".xlsx"
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -266,7 +274,7 @@ export default function CreateStudentPage() {
                 }}
               />
               <Button
-                onClick={handleCsvSubmit}
+                onClick={handleExcelSubmit}
                 className="self-start w-fit px-6 my-2 bg-green-500 hover:bg-green-500"
                 variant={"default"}
               >

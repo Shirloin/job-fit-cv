@@ -46,9 +46,12 @@ export default class UserRepository {
     });
   }
   static async getUserByUsername(username: string) {
-    return await SCHEMA.findUnique({
+    return await SCHEMA.findFirst({
       where: {
-        username: username,
+        username: {
+          equals: username,
+          mode: 'insensitive'
+        },
       },
     });
   }
@@ -108,7 +111,12 @@ export default class UserRepository {
   static async getUserByEmail(email?: string) {
     return await SCHEMA.findFirst({
       where:
-        { email: email }
+      {
+        email: {
+          equals: email,
+          mode: "insensitive"
+        }
+      }
     })
   }
 

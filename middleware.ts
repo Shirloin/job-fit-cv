@@ -22,7 +22,7 @@ export default auth(async (req) => {
   const { nextUrl } = req;
 
   const isLoggedIn = !!req.auth;
-  const userRole = req.auth?.user.name;
+  const userRole = req.auth?.user.name.toString();
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
@@ -53,11 +53,11 @@ export default auth(async (req) => {
     }
   }
 
-  if (isAdminRoute && (userRole === "Admin" || userRole === "admin")) {
+  if (isAdminRoute && userRole.toLowerCase().includes("student")) {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  if (isStudentRoute && (userRole === "Student" || userRole === "student")) {
+  if (isStudentRoute && userRole.toLowerCase().includes("admin")) {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 

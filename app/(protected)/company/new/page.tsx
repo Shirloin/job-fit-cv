@@ -36,7 +36,7 @@ import { CompanyService } from "@/services/CompanyService";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { ChevronsUpDown } from "lucide-react";
 import Link from "next/link";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function CreateCompanyPage() {
@@ -52,6 +52,8 @@ export default function CreateCompanyPage() {
   const [file, setFile] = useState<File | null>(null);
   const [program, setProgram] = useState<string>("");
   const { setIsLoading } = useLoading();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -86,12 +88,13 @@ export default function CreateCompanyPage() {
       const response = await CompanyService.insertCompanyUsingFile(file);
       setIsLoading(false);
       toast.success(response.data.msg);
-    } catch (error) {
-      setIsLoading(false);
+    } catch (error:any) {
+      toast.error(error.response.data.msg)
     } finally {
+      setIsLoading(false);
       toast.success("Account Inserted");
       setFile(null);
-      setInputKey(inputKey + 1)
+      fileInputRef.current!.value = "";
     }
   };
 
@@ -185,6 +188,7 @@ export default function CreateCompanyPage() {
             <div className="w-full flex flex-col gap-2">
               <h1 className="mb-6 font-bold text-xl">Insert Using .xlsx</h1>
               <Input
+                ref={fileInputRef}
                 type="file"
                 accept=".xlsx"
                 onChange={handleFileChange}

@@ -70,12 +70,19 @@ export default function AccountPage() {
                     </h1>
                   </div>
                 </div>
-                {user.role === "student" || user.role === "Student" && (
+                {user.role.toLowerCase().includes("student") && (
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                       <AccordionTrigger>Saved CV</AccordionTrigger>
                       <AccordionContent>
                         <SavedCV />
+                      </AccordionContent>
+                    </AccordionItem>
+                    
+                    <AccordionItem value="item-2">
+                      <AccordionTrigger>Change Password</AccordionTrigger>
+                      <AccordionContent>
+                        <ChangePassword />
                       </AccordionContent>
                     </AccordionItem>
                     {/* <AccordionItem value="item-2">
@@ -84,12 +91,6 @@ export default function AccountPage() {
                         <Score />
                       </AccordionContent>
                     </AccordionItem> */}
-                    <AccordionItem value="item-2">
-                      <AccordionTrigger>Change Password</AccordionTrigger>
-                      <AccordionContent>
-                        <ChangePassword />
-                      </AccordionContent>
-                    </AccordionItem>
                   </Accordion>
                 )}
               </div>
