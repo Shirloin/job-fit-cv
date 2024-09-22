@@ -45,12 +45,20 @@ export default function CreateCompanyPage() {
     isLoading: isLoadingPositions,
     isError: isErrorPositions,
   } = useFetchAllPrograms();
+  const [inputKey, setInputKey] = useState(0)
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [program, setProgram] = useState<string>("");
   const { setIsLoading } = useLoading();
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+      setInputKey(inputKey + 1); 
+    }
+  };
 
   const handleSubmit = async () => {
     try {
@@ -61,8 +69,11 @@ export default function CreateCompanyPage() {
       );
       toast.success("Company inserted");
     } catch (error:any) {
-      console.log(error)
       toast.error(error)
+    }finally{
+      setName("")
+      setPosition("")
+      setProgram("")
     }
   };
 
@@ -81,6 +92,7 @@ export default function CreateCompanyPage() {
     } finally {
       toast.success("Account Inserted");
       setFile(null);
+      setInputKey(inputKey + 1)
     }
   };
 
@@ -172,15 +184,11 @@ export default function CreateCompanyPage() {
         <Card className="rounded-lg border-none mt-6">
           <CardContent className="p-6">
             <div className="w-full flex flex-col gap-2">
-              <h1 className="mb-6 font-bold text-xl">Insert Using CSV</h1>
+              <h1 className="mb-6 font-bold text-xl">Insert Using .xlsx</h1>
               <Input
                 type="file"
                 accept=".xlsx"
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  if (e.target.files && e.target.files[0]) {
-                    setFile(e.target.files[0]);
-                  }
-                }}
+                onChange={handleFileChange}
               />
               <Button
                 onClick={handleExcelSubmit}

@@ -73,6 +73,15 @@ export default function CreateStudentPage() {
       toast.success("Create Account Success");
     } catch (error: any) {
       toast.error(error.response.data.msg);
+    }finally{
+      setForm({
+        username: "",
+        role: "",
+        name: "",
+        email: "",
+        program: "",
+        campus: "",
+      })
     }
   };
   const handleCsvSubmit = async () => {
@@ -112,7 +121,7 @@ export default function CreateStudentPage() {
         </Breadcrumb>
         <Card className="rounded-lg border-none mt-6">
           <CardContent className="p-6">
-            <div className="flex justify-start items-start min-h-[calc(100vh-56px-64px-20px-24px-56px-48px)]">
+            <div className="flex justify-start items-start">
               <div className="w-full flex flex-col relative">
                 <div className="w-full flex flex-col gap-2">
                   <Label>Username</Label>
@@ -247,7 +256,7 @@ export default function CreateStudentPage() {
         <Card className="rounded-lg border-none mt-6">
           <CardContent className="p-6">
             <div className="w-full flex flex-col gap-2">
-              <h1 className="mb-6 font-bold text-xl">Insert Using CSV</h1>
+              <h1 className="mb-6 font-bold text-xl">Insert Using .xlsx</h1>
               <Input
                 type="file"
                 accept=".xlsx"

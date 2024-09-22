@@ -4,7 +4,7 @@ const nextConfig = {
         domains: ["images.unsplash.com", "localhost"]
     },
     env: {
-        NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:5001',
+        NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:3000',
     },
     async headers() {
         return [
