@@ -70,7 +70,7 @@ export default function AccountPage() {
                     </h1>
                   </div>
                 </div>
-                {user.role === "student" && (
+                {user.role === "student" || user.role === "Student" && (
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                       <AccordionTrigger>Saved CV</AccordionTrigger>

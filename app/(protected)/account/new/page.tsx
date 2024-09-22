@@ -73,16 +73,15 @@ export default function CreateStudentPage() {
       toast.success("Create Account Success");
     } catch (error: any) {
       toast.error(error.response.data.msg);
-    }finally{
-      setForm({
-        username: "",
-        role: "",
-        name: "",
-        email: "",
-        program: "",
-        campus: "",
-      })
     }
+    setForm({
+      username: "",
+      role: "",
+      name: "",
+      email: "",
+      program: "",
+      campus: "",
+    })
   };
   const handleCsvSubmit = async () => {
     setIsLoading(true);

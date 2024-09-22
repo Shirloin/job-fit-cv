@@ -96,7 +96,7 @@ export function getCompanyColumns(programs: TProgram[]): ColumnDef<TCompany>[] {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                {role === "admin" ? (
+                {role === "admin" || role === "Admin" ? (
                   <>
                     <DropdownMenuItem onSelect={() => setShowCompany(true)}>
                       Update

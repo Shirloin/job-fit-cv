@@ -70,11 +70,10 @@ export default function CreateCompanyPage() {
       toast.success("Company inserted");
     } catch (error:any) {
       toast.error(error)
-    }finally{
-      setName("")
-      setPosition("")
-      setProgram("")
     }
+    setName("")
+    setPosition("")
+    setProgram("")
   };
 
   const handleExcelSubmit = async () => {
