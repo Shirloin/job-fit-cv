@@ -9,8 +9,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
+import { useCurrentRole } from "@/hooks/use-current-role";
 
 export default function DashboardPage() {
+  const role = useCurrentRole()
 
   return (
     <ContentLayout title="Dashboard">
@@ -22,8 +24,17 @@ export default function DashboardPage() {
         </BreadcrumbList>
       </Breadcrumb>
       <PlaceholderContent>
-        <div>
-        </div>
+      <video className="flex rounded-md" width={"1200"} height={"800"} controls >
+        {
+          role!.toString().toLowerCase().includes("admin") ? (
+            <source src="/assets/tutorial/Admin-Tutorial.mp4" type="video/mp4"/>
+            
+          ):
+          (
+            <source src="/assets/tutorial/Student-Tutorial.mp4" type="video/mp4"/>
+          )
+        }
+           </video>
       </PlaceholderContent>
     </ContentLayout>
   );

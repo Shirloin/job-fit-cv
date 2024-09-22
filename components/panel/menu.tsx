@@ -27,7 +27,7 @@ interface MenuProps {
 export function Menu({ isOpen }: MenuProps) {
   const role = useCurrentRole()
   const pathname = usePathname();
-  const menuList = role.toString().toLowerCase().includes("admin") ? getAdminMenuList(pathname) : getUserMenuList(pathname);
+  const menuList = role!.toString().toLowerCase().includes("admin") ? getAdminMenuList(pathname) : getUserMenuList(pathname);
   const router = useRouter()
 
   const handleLogout = async () => {
