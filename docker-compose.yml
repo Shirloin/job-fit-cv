@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     env_file:
-      - .env
+      - .env.prod
     ports:
       - "5001:5001"
     networks:

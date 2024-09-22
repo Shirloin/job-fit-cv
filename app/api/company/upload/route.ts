@@ -36,13 +36,15 @@ export async function POST(req: NextRequest) {
 
         for (const row of rows) {
 
-            const comapanyName = row["Name"]
+            const companyName = row["Name"]
             const positionName = row["Position"]
             const programName = row["Program"]
+            console.log(companyName)
             try {
-                const company = await insertCompany(comapanyName, programName, positionName)
+                const company = await insertCompany(companyName, programName, positionName)
                 companies.push(company)
             } catch (error) {
+                console.log(error)
                 continue
             }
         }

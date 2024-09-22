@@ -1,22 +1,27 @@
 import prisma from "@/prisma/prisma";
 const SCHEMA = prisma.position
 
-export default class PositionRepository{
-    static getAllPosition = async() => {
+export default class PositionRepository {
+    static getAllPosition = async () => {
         const positions = await SCHEMA.findMany({})
         return positions.map(position => position.name);
     }
 
-    static getPositionByName = async (name: string) =>{
-        const position = await SCHEMA.findFirst({
+    static getPositionByName = async (name: string) => {
+        const position = await SCHEMA.upsert({
             where: {
                 name: name
+            },
+            update: {},
+            create: {
+                name: name,
             }
-        })
-        return position
+        });
+
+        return position;
     }
 
-    static insertPosition = async(name: string) => {
+    static insertPosition = async (name: string) => {
         const position = await SCHEMA.create({
             data: {
                 name: name

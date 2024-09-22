@@ -60,8 +60,9 @@ export default function CreateCompanyPage() {
         program
       );
       toast.success("Company inserted");
-    } catch (error) {
-      return;
+    } catch (error:any) {
+      console.log(error)
+      toast.error(error)
     }
   };
 

@@ -12,7 +12,7 @@ export class UserService {
   }
 
   static getAllStudent() {
-    return axios.get(`${process.env.NEXT_PUBLIC_BASE_PATH}/api/user/`);
+    return axios.get(`${process.env.NEXT_PUBLIC_BASE_PATH}/api/user`);
   }
 
   static saveUserCV(id: string, cv: JsonObject) {
