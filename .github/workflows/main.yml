@@ -1,0 +1,22 @@
+name: job-fit-cv
+
+on:
+  push:
+    branches:
+      - "main"
+jobs:
+  build: Build Docker Image
+  runs-on: ubuntu-latest
+  steps:
+    - #checkout to the repository on the build machine
+      name: Checkout
+      uses: actions/checkout@v2
+
+    - #Login to docker hub using secret in github
+      name: Login to docker hub
+      uses: docker/login-action/@v2
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+      
+      
