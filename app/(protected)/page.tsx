@@ -26,13 +26,14 @@ export default function DashboardPage() {
       <PlaceholderContent>
       <video className="flex rounded-md" width={"1200"} height={"800"} controls >
         {
-          role!.toString().toLowerCase().includes("admin") ? (
-            <source src="/assets/tutorial/Admin-Tutorial.mp4" type="video/mp4"/>
-            
-          ):
-          (
-            <source src="/assets/tutorial/Student-Tutorial.mp4" type="video/mp4"/>
-          )
+          role &&
+            role!.toString().toLowerCase().includes("admin") ? (
+              <source src="/assets/tutorial/Admin-Tutorial.mp4" type="video/mp4"/>
+              
+            ):
+            (
+              <source src="/assets/tutorial/Student-Tutorial.mp4" type="video/mp4"/>
+            )          
         }
            </video>
       </PlaceholderContent>
