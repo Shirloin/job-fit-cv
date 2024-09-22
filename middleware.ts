@@ -53,11 +53,11 @@ export default auth(async (req) => {
     }
   }
 
-  if (isAdminRoute && userRole !== "admin") {
+  if (isAdminRoute && (userRole === "Admin" || userRole === "admin")) {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  if (isStudentRoute && userRole !== "student") {
+  if (isStudentRoute && (userRole === "Student" || userRole === "student")) {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 
