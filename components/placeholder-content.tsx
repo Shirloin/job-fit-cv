@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { getSession, useSession } from "next-auth/react";
 import { auth } from "@/auth";
-import { useCurrentUser } from "@/hooks/user-current-user";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { ReactNode, useEffect, useState } from "react";
 
 export default function PlaceholderContent({ children }: { children: ReactNode }) {

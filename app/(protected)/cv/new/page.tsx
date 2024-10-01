@@ -25,7 +25,7 @@ import { useProjectStore } from '@/store/project-store';
 import { useEducationStore } from '@/store/education-store';
 import { useSkillStore } from '@/store/skill-store';
 import { UserService } from '@/services/UserService';
-import { useCurrentUser } from '@/hooks/user-current-user';
+import { useCurrentUser } from '@/hooks/use-current-user';
 import { JsonArray, JsonObject } from '@prisma/client/runtime/library';
 import { useProfileStore } from '@/store/profile-store';
 import toast from 'react-hot-toast';

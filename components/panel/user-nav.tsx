@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { logOut } from "@/actions/AuthAction";
 import { useRouter } from "next/navigation";
-import { useCurrentUser } from "@/hooks/user-current-user";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 export function UserNav() {
   const router = useRouter()

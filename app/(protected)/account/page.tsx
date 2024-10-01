@@ -19,7 +19,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { useCurrentUser } from "@/hooks/user-current-user";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import Link from "next/link";
 import ChangePassword from "./_components/change-password";
 import Score from "./_components/score";

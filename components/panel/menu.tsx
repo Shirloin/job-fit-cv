@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/tooltip";
 import { logOut } from "@/actions/AuthAction";
 import { getAdminMenuList } from "@/lib/admin-menu-lists";
-import { useCurrentUser } from "@/hooks/user-current-user";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { getUserMenuList } from "@/lib/user-menu-lists";
 import { useCurrentRole } from "@/hooks/use-current-role";
 

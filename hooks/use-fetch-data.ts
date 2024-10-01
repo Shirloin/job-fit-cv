@@ -7,7 +7,7 @@ import { TPosition } from "@/types/position";
 import { TProgram } from "@/types/program";
 import { TUser } from "@/types/user";
 import { useQuery } from "@tanstack/react-query";
-import { useCurrentUser } from "./user-current-user";
+import { useCurrentUser } from "./use-current-user";
 import { TCV } from "@/types/cv";
 import { StudenScoreService } from "@/services/StudentScoreService";
 import { TStudentSubjectScore } from "@/types/student-subject-score";
