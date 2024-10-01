@@ -50,5 +50,5 @@ export const {
       return !!auth
     }
   },
-  trustHost: process.env.APP_ENV === 'production' ? true : false,
+  trustHost: true
 });
