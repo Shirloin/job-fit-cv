@@ -4,6 +4,7 @@ import { logIn } from "@/actions/AuthAction";
 import { Button } from "@/components/ui/button";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -30,7 +31,7 @@ export default function LoginPage() {
     <>
       <div className="relative min-h-screen w-full flex flex-col z-20">
         <div className="z-10 my-auto w-fit flex flex-col px-6 sm:px-10 py-4 sm:py-8 box-border self-center border border-black rounded-lg shadow-xl">
-          <div className="mx-auto w-fit flex flex-col items-center">
+          <div className="mx-auto w-full flex flex-col items-center">
             <img
               className="w-24 sm:w-32 object-fill mb-4 sm:mb-8 self-start"
               src="/assets/logo.png"
@@ -72,7 +73,7 @@ export default function LoginPage() {
               <Button
                 type="button"
                 onClick={handleSubmit}
-                className="w-full my-2"
+                className="w-full my-2 py-4"
               >
                 Login
               </Button>
