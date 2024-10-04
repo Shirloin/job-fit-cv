@@ -24,11 +24,11 @@ import ChangePassword from "./_components/change-password";
 import Score from "./_components/score";
 import SavedCV from "./_components/saved-cv";
 import { useCurrentSession } from "@/hooks/use-current-session";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 export default function AccountPage() {
 
-  const {session } = useCurrentSession()
-  const user = session && session.user
+  const user = useCurrentUser()
 
   return (
     <>
@@ -59,16 +59,16 @@ export default function AccountPage() {
                   </Avatar>
                   <div className="">
                     <h1 className="text-sm md:text-2xl font-bold">
-                      {user.name && user.name}
+                      {user && user.name}
                     </h1>
                     <h1 className="text-m sm:text-xs font-semibold">
-                      {user.nim && user.nim}
+                      {user && user.nim}
                     </h1>
                     <h1 className="text-m sm:text-xs font-semibold">
-                      {user.email && user.email}
+                      {user && user.email}
                     </h1>
                     <h1 className="text-m sm:text-xs font-semibold">
-                      {user.gpa && <>GPA: {user.gpa}</>}
+                      {user && <>GPA: {user.gpa}</>}
                     </h1>
                   </div>
                 </div>
