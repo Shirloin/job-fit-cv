@@ -17,7 +17,7 @@ import { useState } from "react";
 import UpdateCompany from "./update-company-sheet";
 import UpdateCompanySheet from "./update-company-sheet";
 import { TProgram } from "@/types/program";
-import { useCurrentRole } from "@/hooks/use-current-role";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 export function getCompanyColumns(programs: TProgram[]): ColumnDef<TCompany>[] {
   return [
@@ -76,7 +76,7 @@ export function getCompanyColumns(programs: TProgram[]): ColumnDef<TCompany>[] {
       id: "actions",
       header: "Action",
       cell: function Cell({ row }) {
-        const role = useCurrentRole();
+        const user = useCurrentUser()
         const [showCompany, setShowCompany] = useState(false);
         const payment = row.original;
 
@@ -96,7 +96,7 @@ export function getCompanyColumns(programs: TProgram[]): ColumnDef<TCompany>[] {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                {role.toLowerCase().includes("admin") ? (
+                {user && user.role.toLowerCase().includes("admin") ? (
                   <>
                     <DropdownMenuItem onSelect={() => setShowCompany(true)}>
                       Update

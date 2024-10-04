@@ -9,10 +9,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import { useCurrentRole } from "@/hooks/use-current-role";
+import { useCurrentSession } from "@/hooks/use-current-session";
 
-export default function DashboardPage() {
-  const role = useCurrentRole()
+export default  function DashboardPage() {
+  const {session} = useCurrentSession()
 
   return (
     <ContentLayout title="Dashboard">
@@ -26,8 +26,8 @@ export default function DashboardPage() {
       <PlaceholderContent>
       <video className="flex rounded-md" width={"1200"} height={"800"} controls >
         {
-          role &&
-            role!.toString().toLowerCase().includes("admin") ? (
+          session?.user.role &&
+          session?.user.role!.toString().toLowerCase().includes("admin") ? (
               <source src="/assets/tutorial/Admin-Tutorial.mp4" type="video/mp4"/>
               
             ):

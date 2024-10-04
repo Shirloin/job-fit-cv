@@ -33,15 +33,7 @@ export default {
         if (!isValid) {
           throw new Error("Invalid password");
         }
-        return {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          role: user.role,
-          name: user.role,
-          nim: user.nim,
-          image: user.image
-        } as TUser;
+        return user
       },
     }),
   ],

@@ -20,12 +20,13 @@ export default function LoginPage() {
       if (res?.error) {
         toast.error(res.error);
       } else {
-        const updatedSession = await getSession();
-        update(updatedSession);
+        await update()
         toast.success("Login Success");
-        router.replace("/");
+        router.push('/')
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
   return (
     <>

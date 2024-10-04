@@ -19,14 +19,16 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { useCurrentUser } from "@/hooks/use-current-user";
 import Link from "next/link";
 import ChangePassword from "./_components/change-password";
 import Score from "./_components/score";
 import SavedCV from "./_components/saved-cv";
+import { useCurrentSession } from "@/hooks/use-current-session";
 
 export default function AccountPage() {
-  const user = useCurrentUser();
+
+  const {session } = useCurrentSession()
+  const user = session && session.user
 
   return (
     <>

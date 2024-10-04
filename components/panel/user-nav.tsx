@@ -22,11 +22,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { logOut } from "@/actions/AuthAction";
 import { useRouter } from "next/navigation";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentSession } from "@/hooks/use-current-session";
 
 export function UserNav() {
   const router = useRouter()
-  const user = useCurrentUser()
+  const {session} = useCurrentSession()
 
   const handleLogout = async () => {
     await logOut()
@@ -44,7 +44,7 @@ export function UserNav() {
               >
                 <Avatar className="h-8 w-8">
                   <AvatarImage src="#" alt="Avatar" />
-                  <AvatarFallback className="bg-transparent uppercase">{user && user.name?.slice(0, 1)}</AvatarFallback>
+                  <AvatarFallback className="bg-transparent uppercase">{session && session.user.name?.slice(0, 1)}</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
@@ -56,9 +56,9 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user && user.name}</p>
+            <p className="text-sm font-medium leading-none">{session && session.user.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {user && user.email}
+              {session && session.user.email}
             </p>
           </div>
         </DropdownMenuLabel>

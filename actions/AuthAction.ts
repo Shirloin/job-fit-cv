@@ -6,19 +6,19 @@ import { AuthError } from "next-auth";
 import { signOut } from "@/auth"
 
 export const logOut = async () => {
-    await signOut({redirect: false})
+  await signOut({ redirect: false })
 }
 
 export const logIn = async (username: string, password: string) => {
   try {
-    const res = await signIn("credentials", {
+    await signIn("credentials", {
       username,
       password,
-      redirect: false,
+      redirect: false
     });
   } catch (error) {
     if (error instanceof AuthError) {
-        return {error: error.cause?.err?.message}
+      return { error: error.cause?.err?.message }
     }
     throw error
   }

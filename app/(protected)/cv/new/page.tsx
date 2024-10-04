@@ -25,7 +25,6 @@ import { useProjectStore } from '@/store/project-store';
 import { useEducationStore } from '@/store/education-store';
 import { useSkillStore } from '@/store/skill-store';
 import { UserService } from '@/services/UserService';
-import { useCurrentUser } from '@/hooks/use-current-user';
 import { JsonArray, JsonObject } from '@prisma/client/runtime/library';
 import { useProfileStore } from '@/store/profile-store';
 import toast from 'react-hot-toast';
@@ -34,10 +33,12 @@ import SecondTemplate from '@/components/cv-templates/SecondTemplate/page';
 import FourthTemplate from '@/components/cv-templates/FourthTemplate/page';
 import FifthTemplate from '@/components/cv-templates/FifthTemplate/page';
 import { useLoading } from '@/providers/LoadingProvider';
+import { useCurrentSession } from '@/hooks/use-current-session';
 
 export default function CreateCVPage() {
+  const {session} = useCurrentSession()
+  const user = session && session.user
   const { index, setTemplate } = useTemplateStore();
-  const user = useCurrentUser();
   const { profile } = useProfileStore();
   const { experiences } = useExperienceStore();
   const { projects } = useProjectStore();

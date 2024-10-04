@@ -16,19 +16,19 @@ import {
 } from "@/components/ui/tooltip";
 import { logOut } from "@/actions/AuthAction";
 import { getAdminMenuList } from "@/lib/admin-menu-lists";
-import { useCurrentUser } from "@/hooks/use-current-user";
 import { getUserMenuList } from "@/lib/user-menu-lists";
-import { useCurrentRole } from "@/hooks/use-current-role";
+import { useCurrentSession } from "@/hooks/use-current-session";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 interface MenuProps {
   isOpen: boolean | undefined;
 }
 
 export function Menu({ isOpen }: MenuProps) {
-  const role = useCurrentRole()
+ const user = useCurrentUser()
   const pathname = usePathname();
-  const menuList = role
-  ? role.toString().toLowerCase().includes("admin")
+  const menuList = user
+  ? user.role.toString().toLowerCase().includes("admin")
     ? getAdminMenuList(pathname)
     : getUserMenuList(pathname)
   : [];
