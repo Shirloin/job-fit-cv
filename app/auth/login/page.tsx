@@ -22,7 +22,6 @@ export default function LoginPage() {
       } else {
         await update()
         toast.success("Login Success");
-        router.push('/')
       }
     } catch (error) {
       console.log(error)
