@@ -29,9 +29,6 @@ export const useFetchAllStudents = () => {
 
 export const useFetchAllCompanies = () => {
   const user = useCurrentUser()
-  if (!user || !user.id) {
-    throw new Error("User not found or user ID is missing");
-  }
   const fetchRecommendedCompany = async () => {
     try {
 
@@ -44,7 +41,8 @@ export const useFetchAllCompanies = () => {
   }
   return useQuery({
     queryKey: ["companies"],
-    queryFn: fetchRecommendedCompany
+    queryFn: fetchRecommendedCompany,
+    enabled: !!user?.id,
   })
 };
 
