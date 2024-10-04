@@ -20,7 +20,8 @@ export default {
         const user = await prisma.user.findFirst({
           where: {
             username: {
-              equals: username
+              equals: username,
+              mode: 'insensitive',
             },
           }
         });
