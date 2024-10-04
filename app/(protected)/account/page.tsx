@@ -72,7 +72,7 @@ export default function AccountPage() {
                     </h1>
                   </div>
                 </div>
-                {user.role.toLowerCase().includes("student") && (
+                {user && user.role.toLowerCase().includes("student") && (
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                       <AccordionTrigger>Saved CV</AccordionTrigger>
