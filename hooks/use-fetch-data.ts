@@ -29,8 +29,12 @@ export const useFetchAllStudents = () => {
 
 export const useFetchAllCompanies = () => {
   const user = useCurrentUser()
+  if (!user || !user.id) {
+    throw new Error("User not found or user ID is missing");
+  }
   const fetchRecommendedCompany = async () => {
     try {
+
       const response = await UserService.getCompanies(user.id)
       return response.data as TCompany[]
     } catch (error) {
