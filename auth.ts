@@ -19,7 +19,7 @@ export const {
   },
   session: {
     strategy: "jwt",
-    maxAge: 300
+    maxAge: 60 * 60 * 24
   },
   secret: process.env.AUTH_SECRET,
   ...authConfig,

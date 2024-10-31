@@ -23,6 +23,7 @@
 
 //   const isLoggedIn = !!req.auth;
 //   const userRole = req.auth?.user.name;
+// const session = getServ
 
 //   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
 //   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
