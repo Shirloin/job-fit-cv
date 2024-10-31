@@ -34,7 +34,7 @@ export class GeneratorService {
         { role: "system", content: "You are a helpful assistant." },
         { role: "user", content: prompt },
       ],
-      max_tokens: 250,
+      max_tokens: 100,
       temperature: 0.7,
       top_p: 1,
       frequency_penalty: 1,

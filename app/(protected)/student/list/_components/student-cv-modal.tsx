@@ -26,26 +26,22 @@ export default function StudentCVModal({ id }: StudentCVModalProps) {
   ];
   const target = useRef(null);
   const handleDownloadPDF = async () => {
+
     if (target.current) {
-      const canvas = await html2canvas(target.current, {
-        scale: 2,
-        useCORS: true,
+      const pdf = new jsPDF('portrait', 'px', 'a4');
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+
+      await pdf.html(target.current, {
+        callback: (doc) => {
+          doc.save('cv.pdf');
+        },
+        width: pdfWidth,
+
+        windowWidth: 500
       });
-
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "pt",
-        format: "a4",
-      });
-
-      const imgWidth = 595.28;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save("cv.pdf");
     }
   };
+
 
   const handleDownloadImage = async () => {
     if (target.current) {

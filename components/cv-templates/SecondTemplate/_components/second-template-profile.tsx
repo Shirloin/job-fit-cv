@@ -27,7 +27,7 @@ export default function SecondTemplateProfile({
               {position}
             </h1>
           </div>
-          <Avatar className="w-20 h-20 mr-10">
+          <Avatar className="w-20 h-20 ">
             <AvatarImage className="w-full h-full object-cover" src={image} />
           </Avatar>
         </div>

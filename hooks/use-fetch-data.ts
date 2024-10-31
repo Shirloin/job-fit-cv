@@ -85,14 +85,10 @@ export const useFetchUserCV = () => {
     try {
       const response = await UserService.getCV(user.nim)
       if (response.data) {
-        const cv = response.data.cv as TCV
-        if (cv) {
-          return cv
-        }
+        return response.data.cv as TCV
       }
       return null
     } catch (error) {
-      console.error("Error fetching user cv:", error);
       throw new Error("Failed to fetch user cv");
     }
   }

@@ -12,7 +12,7 @@ import SecondTemplateBio from "./_components/second-template-bio";
 export default function SecondTemplate({ cv = null }: { cv?: TCV | null }) {
   return (
     <>
-      <div className="w-full h-full flex flex-col font-sans p-6">
+      <div className="w-full h-full flex flex-col font-sans">
         <SecondTemplateProfile profile={cv?.profile} />
         <div className="flex gap-1 min-h-full">
           <div className="left w-[40%]">

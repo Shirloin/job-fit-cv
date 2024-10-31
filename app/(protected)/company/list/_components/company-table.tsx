@@ -9,6 +9,7 @@ import { DataTable } from "@/components/data-table/data-table";
 import { DataTableToolbar } from "@/components/data-table/data-table-toolbar";
 import { TProgram } from "@/types/program";
 import { TPosition } from "@/types/position";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 interface CompanyTableProps {
   companies: TCompany[];
@@ -21,12 +22,13 @@ export function CompanyTable({
   programs,
   positions,
 }: CompanyTableProps) {
+  const user = useCurrentUser()
   const columns = useMemo(
-    () => getCompanyColumns(programs),
-    [programs]
+    () => getCompanyColumns(programs, user),
+    [programs, user]
   );
 
-  const data = useMemo(()=> companies, [companies])
+  const data = useMemo(() => companies, [companies])
 
   const filterFields: DataTableFilterField<any>[] = useMemo(
     () => [

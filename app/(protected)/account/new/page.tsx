@@ -95,13 +95,13 @@ export default function CreateStudentPage() {
       const response = await UserService.insertAccountUsingFile(file);
       setIsLoading(false);
       toast.success(response.data.msg);
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.response.data.msg)
     } finally {
       setIsLoading(false);
-      toast.success("Account Inserted");
       setFile(null);
       fileInputRef.current!.value = "";
+      toast.success("Account Inserted");
     }
   };
 
@@ -164,7 +164,7 @@ export default function CreateStudentPage() {
                       <Button
                         variant="outline"
                         role="combobox"
-                        aria-expanded={majorOpen} 
+                        aria-expanded={majorOpen}
                         className="w-full justify-between my-2"
                       >
                         {form.program !== "" ? form.program : "Major"}
@@ -264,7 +264,7 @@ export default function CreateStudentPage() {
             <div className="w-full flex flex-col gap-2">
               <h1 className="mb-6 font-bold text-xl">Insert Using .xlsx</h1>
               <Input
-              ref={fileInputRef}
+                ref={fileInputRef}
                 type="file"
                 accept=".xlsx"
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {

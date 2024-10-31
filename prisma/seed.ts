@@ -7,7 +7,7 @@ import { seedProgram } from "./seed/program-seeder"
 
 async function main() {
   await refresh()
-  // await seedProgram()
+  await seedProgram()
   await seedCompany()
   await seedUser()
   await seedSemester()

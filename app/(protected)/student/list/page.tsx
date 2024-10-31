@@ -21,8 +21,6 @@ export default function StudentListPage() {
   const { data: students, isLoading: isLoadingStudents, isError: isErrorStudents } = useFetchAllStudents();
   const { data: programs, isLoading: isLoadingPrograms, isError: isErrorPrograms } = useFetchAllPrograms();
 
-
-
   return (
     <>
       <ContentLayout title="Student List">

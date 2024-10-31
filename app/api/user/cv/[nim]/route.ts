@@ -6,8 +6,10 @@ export async function GET(req: NextRequest, { params }: { params: { nim: string 
 
     try {
         const cv = await getCV(nim);
+
         return NextResponse.json(cv, { status: 200 });
     } catch (error) {
+        console.log(error)
         return NextResponse.json({ error: 'CV not found' }, { status: 404 });
     }
 }

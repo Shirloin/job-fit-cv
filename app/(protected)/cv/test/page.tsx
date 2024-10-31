@@ -47,12 +47,14 @@ export default function CreateCVPage() {
   const { isLoading, setIsLoading } = useLoading()
 
   const target = useRef(null);
+
   const handleDownloadPDF = async () => {
     setIsLoading(true);
 
     if (target.current) {
       const pdf = new jsPDF('portrait', 'px', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
 
       await pdf.html(target.current, {
         callback: (doc) => {
@@ -162,7 +164,7 @@ export default function CreateCVPage() {
                       </Button>
                     </div>
                     <div className="w-fit h-fit border border-primary rounded-xl">
-                      <div ref={target} className="w-full h-full p-4">
+                      <div ref={target} className="w-full h-full p-4 ">
                         <div className="w-[460px] h-[660px] overflow-hidden">
                           {templates[index]}
                         </div>

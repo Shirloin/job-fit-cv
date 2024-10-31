@@ -16,11 +16,11 @@ export default function FifthTemplateSkill({
   return (
     <>
       <div className="mt-2">
-        <h2 className="text-center font-serif text-xs">Profile</h2>
-        <hr className="w-full border-primary mt-4 mb-1" />
+        <h2 className="text-center font-serif text-xs">Skill</h2>
+        <hr className="w-full border-primary mt-4 " />
         <div className="text-center">
           {skills.map((skill, index) => (
-            <span key={index} className="text-[8px]">
+            <span key={index} className="text-m">
               {skill.name}&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
           ))}

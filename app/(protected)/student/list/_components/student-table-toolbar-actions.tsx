@@ -63,23 +63,7 @@ export function StudentTableToolbarActions({
 
     return (
         <div className="flex items-center gap-2">
-            {/* <Button variant="outline" size="sm">
-                <PlusIcon className="mr-2 size-4" aria-hidden="true" />
-                New Student
-            </Button> */}
             <CVDownloader students={students} />
-            {/* <Button
-                variant="outline"
-                size="sm"
-                onClick={handleDownloadAllCV}
-            >
-                <DownloadIcon className="mr-2 size-4" aria-hidden="true" />
-                Download All CV
-            </Button> */}
-            {/**
-       * Other actions can be added here.
-       * For example, import, view, etc.
-       */}
         </div>
     )
 }

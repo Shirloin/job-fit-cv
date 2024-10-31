@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-// File: CVDownloader.tsx
 
 import React, { useState, useCallback } from 'react';
 import JSZip from 'jszip';
@@ -29,8 +28,6 @@ const templates = [
 
 function renderToHiddenContainer(template: React.ReactElement) {
     const container = document.createElement("div");
-    container.style.position = "absolute";
-    container.style.left = "-9999px";
     document.body.appendChild(container);
 
     const root = createRoot(container);
@@ -52,11 +49,12 @@ export function CVDownloader({ students }: { students: TUser[] }) {
         setIsLoading(true);
 
         try {
-            const zip = new JSZip();
+            const mainZip = new JSZip();
 
             for (const student of students) {
-                const response = await UserService.getCV(student.id);
+                const response = await UserService.getCV(student.nim);
                 const cv = response.data.cv as TCV;
+                console.log(cv)
 
                 if (cv) {
                     const TemplateComponent = templates[cv.index];
@@ -64,39 +62,30 @@ export function CVDownloader({ students }: { students: TUser[] }) {
 
                     await new Promise(resolve => setTimeout(resolve, 500));
 
-                    const canvas = await html2canvas(target, {
-                        scale: 2,
-                        useCORS: true,
+                    const pdf = new jsPDF('portrait', 'pt', 'a4');
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+
+                    await new Promise<void>((resolve, reject) => {
+                        pdf.html(target, {
+                            callback: () => {
+                                const pdfBlob = pdf.output("blob");
+                                const folderName = "CVs";
+                                const fileName = `${student.nim}.pdf`;
+                                mainZip.file(`${folderName}/${fileName}`, pdfBlob);
+                                document.body.removeChild(target);
+                                resolve();
+                            },
+                            width: pdfWidth,
+                            windowWidth: 500
+                        }).catch(reject);
                     });
-
-                    const imgData = canvas.toDataURL("image/png");
-
-                    if (imgData) {
-                        const pdf = new jsPDF({
-                            orientation: "portrait",
-                            unit: "pt",
-                            format: "a4",
-                        });
-
-                        const imgWidth = 595.28;
-                        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-                        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-                        const pdfBlob = pdf.output("blob");
-
-                        zip.file(`${student.nim}.pdf`, pdfBlob);
-
-                        document.body.removeChild(target);
-                    } else {
-                        console.error("Failed to capture canvas image data for student:", student.nim);
-                    }
                 }
             }
 
-            const content = await zip.generateAsync({ type: "blob" });
+            const content = await mainZip.generateAsync({ type: "blob" });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(content);
-            link.download = "all_cvs.zip";
+            link.download = "student_cv.zip";
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
