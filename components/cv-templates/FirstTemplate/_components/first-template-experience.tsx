@@ -1,5 +1,5 @@
-import { useExperienceStore } from "@/store/experience-store";
-import { TExperience } from "@/types/cv";
+import { useExperienceStore } from '@/store/experience-store';
+import { TExperience } from '@/types/cv';
 
 export default function FirstTemplateExperience({
   savedExperiences = null,
@@ -16,7 +16,7 @@ export default function FirstTemplateExperience({
   return (
     <>
       <div className="flex flex-col items-start mr-1 ">
-        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-green-500">
+        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black">
           Experience
         </h1>
         {experiences.map((experience, index) => (
@@ -44,15 +44,15 @@ function ExperienceItem({ experience }: { experience: ExperienceItemProps }) {
           <h1 className="font-semibold text-start text-l leading-none">
             {experience.positionTitle}
             <span className="ml-1 font-normal text-m">
-              {experience.type !== "" ? experience.type : ""}
+              {experience.type !== '' ? experience.type : ''}
             </span>
           </h1>
           <div className="text-m">
-            {experience.companyName !== "" ||
-            experience.startDate !== "" ||
-            experience.endDate !== "" ? (
+            {experience.companyName !== '' ||
+            experience.startDate !== '' ||
+            experience.endDate !== '' ? (
               <h1>
-                {experience.companyName} | {experience.startDate} -{" "}
+                {experience.companyName} | {experience.startDate} -{' '}
                 {experience.endDate}
               </h1>
             ) : null}
@@ -61,7 +61,7 @@ function ExperienceItem({ experience }: { experience: ExperienceItemProps }) {
         <h1
           className="text-m text-wrap my-1 leading-tight"
           dangerouslySetInnerHTML={{
-            __html: experience.summary.replace(/\n/g, "<br />"),
+            __html: experience.summary.replace(/\n/g, '<br />'),
           }}
         />
       </div>

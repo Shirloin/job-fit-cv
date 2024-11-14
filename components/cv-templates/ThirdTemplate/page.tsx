@@ -1,11 +1,11 @@
-import { Card } from "@/components/ui/card";
-import ThirdTemplateProfile from "./_components/third-template-profile";
-import ThirdTemplateExperience from "./_components/third-template-experience";
-import ThirdTemplateProject from "./_components/third-template-project";
-import ThirdTemplateContact from "./_components/third-template-contact";
-import ThirdTemplateEducation from "./_components/third-template-education";
-import ThirdTemplateSkill from "./_components/third-template-skill";
-import { TCV } from "@/types/cv";
+import { Card } from '@/components/ui/card';
+import ThirdTemplateProfile from './_components/third-template-profile';
+import ThirdTemplateExperience from './_components/third-template-experience';
+import ThirdTemplateProject from './_components/third-template-project';
+import ThirdTemplateContact from './_components/third-template-contact';
+import ThirdTemplateEducation from './_components/third-template-education';
+import ThirdTemplateSkill from './_components/third-template-skill';
+import { TCV } from '@/types/cv';
 
 export default function ThirdTemplate({ cv = null }: { cv?: TCV | null }) {
   return (

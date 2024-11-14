@@ -1,5 +1,5 @@
-import { useEducationStore } from "@/store/education-store";
-import { TEducation } from "@/types/cv";
+import { useEducationStore } from '@/store/education-store';
+import { TEducation } from '@/types/cv';
 
 export default function ThirdTemplateEducation({
   savedEducations = null,
@@ -8,8 +8,8 @@ export default function ThirdTemplateEducation({
 }) {
   const { educations: storeEducations } = useEducationStore();
   const educations = storeEducations ?? savedEducations;
-  if(educations.length<1){
-    return null
+  if (educations.length < 1) {
+    return null;
   }
 
   return (
@@ -39,14 +39,14 @@ function EducationItem({ education }: { education: EducationItemProps }) {
   return (
     <>
       <div className="flex flex-col my-1">
+        <h1 className="font-bold text-start text-m leading-none">
+          {education.schoolName}
+        </h1>
         <h1 className="text-m font-medium">
           {education.startDate} - {education.endDate}
         </h1>
         <h1 className="text-m text-gray-800">
           {education.degree} {education.fieldOfStudy}
-        </h1>
-        <h1 className="font-bold text-start text-m leading-none">
-          {education.schoolName}
         </h1>
       </div>
     </>

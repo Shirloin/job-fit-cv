@@ -1,5 +1,5 @@
-import { useEducationStore } from "@/store/education-store";
-import { TEducation } from "@/types/cv";
+import { useEducationStore } from '@/store/education-store';
+import { TEducation } from '@/types/cv';
 
 export default function FirstTemplateEducation({
   savedEducations = null,
@@ -12,7 +12,7 @@ export default function FirstTemplateEducation({
   return (
     <>
       <div className="flex flex-col items-start my-1">
-        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-green-500">
+        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black">
           Education
         </h1>
         {educations.map((education, index) => (

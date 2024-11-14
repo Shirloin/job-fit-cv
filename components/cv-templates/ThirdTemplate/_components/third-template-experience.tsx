@@ -1,5 +1,5 @@
-import { useExperienceStore } from "@/store/experience-store";
-import { TExperience } from "@/types/cv";
+import { useExperienceStore } from '@/store/experience-store';
+import { TExperience } from '@/types/cv';
 
 export default function ThridTemplateExperience({
   savedExperiences = null,
@@ -43,12 +43,12 @@ export function ExperienceItem({
   return (
     <>
       <div className="flex flex-col my-1">
-        <div className="text-m">
-          {experience.companyName !== "" ||
-          experience.startDate !== "" ||
-          experience.endDate !== "" ? (
+        <div className="text-m mb-1">
+          {experience.companyName !== '' ||
+          experience.startDate !== '' ||
+          experience.endDate !== '' ? (
             <h1>
-              {experience.companyName} | {experience.startDate} -{" "}
+              {experience.companyName} | {experience.startDate} -{' '}
               {experience.endDate}
             </h1>
           ) : null}
@@ -56,13 +56,13 @@ export function ExperienceItem({
         <h1 className="font-semibold text-start text-l leading-none">
           {experience.positionTitle}
           <span className="ml-1 font-normal text-m">
-            {experience.type !== "" ? experience.type : ""}
+            {experience.type !== '' ? experience.type : ''}
           </span>
         </h1>
         <h1
           className="text-m text-wrap my-1"
           dangerouslySetInnerHTML={{
-            __html: experience.summary.replace(/\n/g, "<br />"),
+            __html: experience.summary.replace(/\n/g, '<br />'),
           }}
         />
         {/* <h1 className="text-m text-wrap my-1">

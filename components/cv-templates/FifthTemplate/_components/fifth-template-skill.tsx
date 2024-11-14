@@ -16,7 +16,7 @@ export default function FifthTemplateSkill({
   return (
     <>
       <div className="mt-2">
-        <h2 className="text-center font-serif text-xs">Skill</h2>
+        <h2 className="text-center font-serif text-xs">Skills</h2>
         <hr className="w-full border-primary mt-4 " />
         <div className="text-center">
           {skills.map((skill, index) => (

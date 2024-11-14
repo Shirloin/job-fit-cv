@@ -1,5 +1,5 @@
-import { useProjectStore } from "@/store/project-store";
-import { TProject } from "@/types/cv";
+import { useProjectStore } from '@/store/project-store';
+import { TProject } from '@/types/cv';
 
 export default function FirstTemplateProject({
   savedProjects = null,
@@ -14,7 +14,7 @@ export default function FirstTemplateProject({
   return (
     <>
       <div className="flex flex-col items-start mr-1">
-        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-green-500">
+        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black">
           Projects
         </h1>
         {projects.map((project, index) => (
@@ -25,7 +25,7 @@ export default function FirstTemplateProject({
             <h1
               className="text-m text-wrap my-1"
               dangerouslySetInnerHTML={{
-                __html: project.projectDescription.replace(/\n/g, "<br />"),
+                __html: project.projectDescription.replace(/\n/g, '<br />'),
               }}
             />
           </div>

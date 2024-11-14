@@ -1,12 +1,13 @@
-import { useSkillStore } from "@/store/skill-store";
-import { TSkill } from "@/types/cv";
+import { useSkillStore } from '@/store/skill-store';
+import { TSkill } from '@/types/cv';
 
-
-export default function FirstTemplateSkill({savedSkills=null}: {
+export default function FirstTemplateSkill({
+  savedSkills = null,
+}: {
   savedSkills?: TSkill[] | null;
 }) {
   const { skills: storeSkills } = useSkillStore();
-  const skills = storeSkills ?? savedSkills
+  const skills = storeSkills ?? savedSkills;
 
   if (skills.length < 1) {
     return null;
@@ -15,7 +16,7 @@ export default function FirstTemplateSkill({savedSkills=null}: {
   return (
     <>
       <div className="flex flex-col items-start my-1">
-        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-green-500">
+        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black">
           Skills
         </h1>
         {skills.map((skill, index) => (

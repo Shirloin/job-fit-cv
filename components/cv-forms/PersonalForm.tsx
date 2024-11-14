@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import React from "react";
-import { Textarea } from "../ui/textarea";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { GeneratorService, prompts } from "@/services/GeneratorService";
-import { useSkillStore } from "@/store/skill-store";
-import { useLoading } from "@/providers/LoadingProvider";
-import { useProfileStore } from "@/store/profile-store";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import React from 'react';
+import { Textarea } from '../ui/textarea';
+import { Avatar, AvatarImage } from '../ui/avatar';
+import { GeneratorService, prompts } from '@/services/GeneratorService';
+import { useSkillStore } from '@/store/skill-store';
+import { useLoading } from '@/providers/LoadingProvider';
+import { useProfileStore } from '@/store/profile-store';
 
 export default function PersonalForm() {
   const { profile, updateData } = useProfileStore();
@@ -15,7 +15,7 @@ export default function PersonalForm() {
   const { isLoading, setIsLoading } = useLoading();
   const handleGenerateProfileSummary = async () => {
     setIsLoading(true);
-    const knownTechnologies = skills.join(",");
+    const knownTechnologies = skills.join(',');
     const prompt = prompts.profileSummary(
       profile.firstName,
       profile.lastName,
@@ -24,7 +24,7 @@ export default function PersonalForm() {
       profile.summary
     );
     const newProfileSummary = await GeneratorService.generateText(prompt);
-    updateData("summary", newProfileSummary);
+    updateData('summary', newProfileSummary);
     setIsLoading(false);
   };
 
@@ -33,7 +33,7 @@ export default function PersonalForm() {
     if (event.target.files && event.target.files?.[0]) {
       reader.onloadend = () => {
         const url = reader.result as string;
-        updateData("image", url);
+        updateData('image', url);
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -43,7 +43,7 @@ export default function PersonalForm() {
     <>
       <div className="w-full mt-4 font-normal">
         <div className="flex flex-col sm:flex-row gap-4 mb-4 ">
-          <div className="max-w-72 w-full">
+          {/* <div className="max-w-72 w-full">
             <Label>
               <Avatar className="w-24 h-24">
                 <AvatarImage
@@ -58,13 +58,13 @@ export default function PersonalForm() {
                 accept="image/*"
               />
             </Label>
-          </div>
-          <div className="max-w-72 w-full">
+          </div> */}
+          <div className="w-full">
             <Label htmlFor="position">Position</Label>
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateData("position", e.target.value)
+                updateData('position', e.target.value)
               }
               value={profile.position}
               placeholder="Position"
@@ -79,7 +79,7 @@ export default function PersonalForm() {
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateData("firstName", e.target.value)
+                updateData('firstName', e.target.value)
               }
               value={profile.firstName}
               placeholder="First Name"
@@ -91,7 +91,7 @@ export default function PersonalForm() {
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateData("lastName", e.target.value)
+                updateData('lastName', e.target.value)
               }
               value={profile.lastName}
               placeholder="Last Name"
@@ -106,7 +106,7 @@ export default function PersonalForm() {
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateData("phone", e.target.value)
+                updateData('phone', e.target.value)
               }
               value={profile.phone}
               placeholder="Phone Number"
@@ -119,7 +119,7 @@ export default function PersonalForm() {
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateData("email", e.target.value)
+                updateData('email', e.target.value)
               }
               value={profile.email}
               placeholder="Email"
@@ -134,7 +134,7 @@ export default function PersonalForm() {
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateData("github", e.target.value)
+                updateData('github', e.target.value)
               }
               value={profile.github}
               placeholder="Github"
@@ -146,7 +146,7 @@ export default function PersonalForm() {
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateData("linkedin", e.target.value)
+                updateData('linkedin', e.target.value)
               }
               value={profile.linkedin}
               placeholder="LinkedIn"
@@ -161,7 +161,7 @@ export default function PersonalForm() {
             <Button
               onClick={handleGenerateProfileSummary}
               className="text-gray-400 hover:text-green-500"
-              variant={"ghost"}
+              variant={'ghost'}
             >
               Generate
             </Button>
@@ -169,7 +169,7 @@ export default function PersonalForm() {
           <Textarea
             className="h-36 mt-1"
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              updateData("summary", e.target.value)
+              updateData('summary', e.target.value)
             }
             placeholder="Profile Summary"
             id="summary"
