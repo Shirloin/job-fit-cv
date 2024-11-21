@@ -12,11 +12,10 @@ export default function SecondTemplateProject({
     return null;
   }
   return (
-    <>
-      <div className="flex flex-col items-start mr-1">
-        <p className="uppercase text-[12px] tracking-[0.15rem] font-semibold mb-3">
-          Projects
-        </p>
+    <div className="text-l w-[90%]">
+      <p className="uppercase text-[12px] font-bold">Project</p>
+      <div className="border-t border-1 border-black w-full m-auto mt-3 -mb-1"></div>
+      <div className="flex flex-col gap-1">
         {projects.map((project, index) => (
           <div key={index} className="my-1">
             <h1 className="font-semibold text-start text-l leading-none">
@@ -31,6 +30,6 @@ export default function SecondTemplateProject({
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

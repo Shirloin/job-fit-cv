@@ -13,25 +13,17 @@ export default function SecondTemplateProfile({
     ? profile.firstName + " " + profile.lastName
     : user.firstName + " " + user.lastName;
   const position = profile ? profile.position : user.position;
-  const image = profile ? profile.image : user.image
+  const image = profile ? profile.image : user.image;
 
   return (
     <>
       <div>
         <div className="flex justify-between items-center ">
-          <div className="max-w-60 text-wrap">
-            <h1 className="uppercase font-bold text-xl tracking-[0.3em]">
-              {fullName}
-            </h1>
-            <h1 className="text-l font-extralight leading-relaxed ">
-              {position}
-            </h1>
+          <div className="w-full text-wrap text-center">
+            <h1 className="font-bold text-xl">{fullName}</h1>
+            <h1 className="text-l mt-1">{position}</h1>
           </div>
-          <Avatar className="w-20 h-20 ">
-            <AvatarImage className="w-full h-full object-cover" src={image} />
-          </Avatar>
         </div>
-        <hr className="w-full border-primary my-4" />
       </div>
     </>
   );

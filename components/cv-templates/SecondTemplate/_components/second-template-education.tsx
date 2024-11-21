@@ -10,16 +10,15 @@ export default function SecondTemplateEducation({
   const educations = storeEducations ?? savedEducations;
 
   return (
-    <>
-      <div className="flex flex-col items-start my-1">
-        <p className="uppercase text-[12px] tracking-[0.15rem] font-semibold mb-3">
-          Education
-        </p>
+    <div className="text-l w-[90%]">
+      <p className="uppercase text-[12px] font-bold">Education</p>
+      <div className="border-t border-1 border-black w-full m-auto mt-3 -mb-1"></div>
+      <div className="flex flex-col gap-1">
         {educations.map((education, index) => (
           <EducationItem key={index} education={education} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useProfileStore } from "@/store/profile-store";
 import { TProfile } from "@/types/cv";
 
-export default function SecondTemplateBio({
+export default function SecondTemplateSummary({
   profile = null,
 }: {
   profile?: TProfile | null;
@@ -13,10 +13,9 @@ export default function SecondTemplateBio({
 
   return (
     <>
-      <div className="text-l mr-10 mt-1 w-full">
-        <p className="uppercase text-[12px] tracking-[0.15rem] font-semibold mb-4">
-          Profile
-        </p>
+      <div className="text-l w-[90%]">
+        <p className="uppercase text-[12px] font-bold">Summary</p>
+        <div className="border-t border-1 border-black w-full m-auto mt-3"></div>
         <div className="flex flex-col gap-1">
           <p className="text-m leading-tight">{summary}</p>
         </div>

@@ -14,16 +14,15 @@ export default function SecondTemplateExperience({
   }
 
   return (
-    <>
-      <div className="flex flex-col items-start mr-1 ">
-        <p className="uppercase text-[12px] tracking-[0.15rem] font-semibold mb-3">
-          Experience
-        </p>
+    <div className="text-l w-[90%]">
+      <p className="uppercase text-[12px] font-bold">Experience</p>
+      <div className="border-t border-1 border-black w-full m-auto mt-3 -mb-1"></div>
+      <div className="flex flex-col gap-1">
         {experiences.map((experience, index) => (
           <ExperienceItem key={index} experience={experience} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -39,28 +38,21 @@ interface ExperienceItemProps {
 function ExperienceItem({ experience }: { experience: ExperienceItemProps }) {
   return (
     <>
-      <div className="w-full my-1">
+      <div className="w-full mt-1">
         <div className="flex justify-between items-center">
           <h1 className="font-semibold text-start text-l leading-none">
             {experience.positionTitle}
+            {experience.type !== "" ? " | " + experience.type : ""}
+            {experience.companyName !== ""
+              ? " | " + experience.companyName
+              : ""}
+            {experience.startDate !== "" || experience.endDate !== ""
+              ? " | " + experience.startDate + " - " + experience.endDate
+              : null}
           </h1>
         </div>
-        <div className="flex gap-5">
-          <h1 className="text-m text-wrap mt-1 leading-tight">
-            {experience.type !== "" ? experience.type : ""}
-          </h1>
-          {experience.companyName !== "" ||
-          experience.startDate !== "" ||
-          experience.endDate !== "" ? (
-            <h1 className="text-m text-wrap mt-1 leading-tight">
-              {experience.companyName} | {experience.startDate} -{" "}
-              {experience.endDate}
-            </h1>
-          ) : null}
-        </div>
-
         <h1
-          className="text-m text-wrap my-1 leading-tight"
+          className="text-m text-wrap mt-1 leading-tight"
           dangerouslySetInnerHTML={{
             __html: experience.summary.replace(/\n/g, "<br />"),
           }}

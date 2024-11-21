@@ -5,29 +5,24 @@ import SecondTemplateEducation from "./_components/second-template-education";
 import SecondTemplateExperience from "./_components/second-template-experience";
 import SecondTemplateProfile from "./_components/second-template-profile";
 import SecondTemplateProject from "./_components/second-template-project";
-import SecondTemplateSkill from "./_components/second-template-skill";
 import SecondTemplateContact from "./_components/second-template-contact";
-import SecondTemplateBio from "./_components/second-template-bio";
+import SecondTemplateSummary from "./_components/second-template-summary";
 
 export default function SecondTemplate({ cv = null }: { cv?: TCV | null }) {
   return (
     <>
       <div className="w-full h-full flex flex-col font-sans">
         <SecondTemplateProfile profile={cv?.profile} />
-        <div className="flex gap-1 min-h-full">
-          <div className="left w-[40%]">
-            <SecondTemplateContact profile={cv?.profile} />
-            <hr className="w-2/5 border-primary my-5" />
-            <SecondTemplateEducation savedEducations={cv?.educations} />
-            <hr className="w-2/5 border-primary my-5" />
-            <SecondTemplateSkill savedSkills={cv?.skills} />
-          </div>
-          <div className="border-r border-black h-[90%] mt-2"></div>
-          <div className="right w-full pl-6">
-            <SecondTemplateBio profile={cv?.profile} />
-            <hr className="w-full border-primary my-5" />
+        <SecondTemplateContact profile={cv?.profile} />
+        <div className="border-t border-gray-200 w-[90%] mb-1 mt-3 m-auto"></div>
+        <div className="flex gap-1 min-h-full justify-center">
+          <div className="flex flex-col items-center">
+            <SecondTemplateSummary profile={cv?.profile} />
+            <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
             <SecondTemplateExperience savedExperiences={cv?.experiences} />
-            <hr className="w-full border-primary my-5" />
+            <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
+            <SecondTemplateEducation savedEducations={cv?.educations} />
+            <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
             <SecondTemplateProject savedProjects={cv?.projects} />
           </div>
         </div>

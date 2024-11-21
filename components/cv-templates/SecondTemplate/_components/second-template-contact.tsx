@@ -18,32 +18,29 @@ export default function SecondTemplateContact({
 
   return (
     <>
-      <div className="text-l mr-10 mt-1">
-        <p className="uppercase text-[12px] tracking-[0.15rem] font-semibold mb-4">
-          Contact
-        </p>
-        <div className="flex flex-col gap-1 text-m">
+      <div className="text-l w-full flex justify-center mt-2">
+        <div className="flex gap-2 text-m">
           {phone && (
-            <div className="flex">
-              <h1 className="w-11">Phone</h1>
+            <div className="flex gap-0.5">
+              <h1 className="font-semibold">Phone:</h1>
               <h1>{phone}</h1>
             </div>
           )}
           {email && (
-            <div className="flex items-center">
-              <h1 className="min-w-11">Email</h1>
+            <div className="flex gap-0.5">
+              <h1 className="font-semibold">Email:</h1>
               <h1>{email}</h1>
             </div>
           )}
           {github && (
-            <div className="flex">
-              <h1 className="w-11">Github</h1>
+            <div className="flex gap-0.5">
+              <h1 className="font-semibold">Github:</h1>
               <h1>{github}</h1>
             </div>
           )}
           {linkedin && (
-            <div className="flex">
-              <h1 className="w-11">Linkedin</h1>
+            <div className="flex gap-0.5">
+              <h1 className="font-semibold">Linkedin:</h1>
               <h1>{linkedin}</h1>
             </div>
           )}

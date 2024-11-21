@@ -13,10 +13,11 @@ export default function FourthTemplateProject({
   }
   return (
     <>
-      <div className="flex flex-col items-start mr-1">
-        <div className="font-bold leading-none mb-2 bg-emerald-100 w-full py-1 px-2 mt-2">
+      <div className="flex flex-col items-start">
+        <div className="font-bold leading-none mb-2 w-full mt-2 uppercase">
           <h1>Projects</h1>
         </div>
+        <hr className="w-full border-primary mt-2 -mb-1" />
         {projects.map((project, index) => (
           <div key={index} className="flex flex-col my-1">
             <h1 className="font-semibold text-start text-l leading-none">

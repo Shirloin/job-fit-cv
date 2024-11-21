@@ -20,11 +20,11 @@ export default function FourthTemplateProfile({
   return (
     <div className="flex flex-col items-start mr-1 w-full">
       <div className="flex justify-between w-full">
-        <div className="font-bold leading-none my-1 w-full mt-3">
-          <h1>{fullName}</h1>
-          <h1 className="uppercase font-bold text-start text-m leading-none mt-1">
-            {position}
-          </h1>
+        <div className="flex justify-between items-center ">
+          <div className="w-full text-wrap">
+            <h1 className="font-bold text-xl uppercase">{fullName}</h1>
+            <h1 className="text-l mt-1">{position}</h1>
+          </div>
         </div>
         <div className="flex flex-col gap-1 my-1">
           {phone && (
