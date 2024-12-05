@@ -17,7 +17,6 @@ export const logIn = async (username: string, password: string) => {
       redirectTo: "/"
     });
   } catch (error) {
-    console.log(error)
     if (error instanceof AuthError) {
       return { error: error.cause?.err?.message }
     }

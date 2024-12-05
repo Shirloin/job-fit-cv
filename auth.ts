@@ -24,6 +24,9 @@ export const {
   secret: process.env.AUTH_SECRET,
   ...authConfig,
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
     async session({ session, token }) {
       session.user = token.user
 
