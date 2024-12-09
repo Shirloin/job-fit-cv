@@ -48,15 +48,16 @@ export default function UpdateStudentSheet({
     const [name, setName] = useState(student.name);
     const [program, setProgram] = useState(student.program?.name);
     const [email, setEmail] = useState(student.email)
+    const [campus, setCampus] = useState(student.campus)
 
     const queryClient = useQueryClient();
     const handleSubmit = async () => {
-        if (!name || !email || !program || !username) {
+        if (!name || !email || !program || !username || !campus) {
             toast.error("All fields must be filled");
             return;
         }
         try {
-            const response = await StudentService.updateStudent(student.id, username, name, email, program)
+            const response = await StudentService.updateStudent(student.id, username, name, email, campus, program)
             toast.success("Update Successful");
             queryClient.invalidateQueries({ queryKey: ["students"] });
         } catch (error: any) {
@@ -97,7 +98,15 @@ export default function UpdateStudentSheet({
                                 setEmail(e.target.value);
                             }}
                         />
-                        <Label>Major</Label>
+                        <Label>Campus</Label>
+                        <Input
+                            value={campus}
+                            placeholder="Campus"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                setCampus(e.target.value);
+                            }}
+                        />
+                        <Label>Program</Label>
                         <Popover open={open} onOpenChange={setOpen}>
                             <PopoverTrigger asChild>
                                 <Button

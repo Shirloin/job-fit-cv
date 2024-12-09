@@ -3,8 +3,8 @@ import UserRepository from "@/repositories/UserRepository";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest) {
-    const { id, username, name, email, program } = await req.json()
-    if (username.trim().length === 0 || name.trim().length === 0 || email.trim().length === 0 || program.trim().length === 0) {
+    const { id, username, name, email, campus, program } = await req.json()
+    if (username.trim().length === 0 || name.trim().length === 0 || email.trim().length === 0 || campus.trim().length === 0 || program.trim().length === 0) {
         return new NextResponse(JSON.stringify({ msg: "All fileds must be filled" }), { status: 422 })
     }
     let user = await getUserById(id)
@@ -16,7 +16,7 @@ export async function PUT(req: NextRequest) {
     if (existingEmail && user?.email !== email) {
         return new NextResponse(JSON.stringify({ msg: "Email already taken" }), { status: 422 })
     }
-    user = await updateStudent(id, username, name, email, program)
+    user = await updateStudent(id, username, name, email, campus, program)
 
     return new NextResponse(JSON.stringify({ user: user }), { status: 200 })
 }
@@ -27,8 +27,8 @@ export async function DELETE(req: NextRequest) {
     return new NextResponse(JSON.stringify({ user: user }), { status: 200 })
 }
 
-async function updateStudent(id: string, username: string, name: string, email: string, program: string) {
-    return await StudentRepository.updateStudent(id, username, name, email, program)
+async function updateStudent(id: string, username: string, name: string, email: string, campus: string, program: string) {
+    return await StudentRepository.updateStudent(id, username, name, email, campus, program)
 }
 
 async function getUserById(id: string) {
