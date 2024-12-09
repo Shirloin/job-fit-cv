@@ -50,7 +50,7 @@ export default function AccountPage() {
           <CardContent className="p-6">
             <div className="flex justify-center items-start min-h-[calc(100vh-56px-64px-20px-24px-56px-48px)]">
               <div className="max-w-3xl w-full flex sm:flex-row flex-col justify-between items-start gap-10 ">
-                <div className="flex items-start">
+                {/* <div className="flex items-start">
                   <Avatar className="w-14 h-14 md:w-24 md:h-24 mr-4">
                     <AvatarImage
                       className="w-full h-full object-cover"
@@ -71,7 +71,7 @@ export default function AccountPage() {
                       {user && <>GPA: {user.gpa}</>}
                     </h1>
                   </div>
-                </div>
+                </div> */}
                 {user && user.role.toLowerCase().includes("student") && (
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
