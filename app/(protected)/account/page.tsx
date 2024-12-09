@@ -72,16 +72,16 @@ export default function AccountPage() {
                     </h1>
                   </div>
                 </div> */}
-                {user && user.role.toLowerCase().includes("student") && (
                   <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="item-1">
+                {user && user.role.toLowerCase().includes("student") && (
+                    <AccordionItem value="saved-cv">
                       <AccordionTrigger>Saved CV</AccordionTrigger>
                       <AccordionContent>
                         <SavedCV />
                       </AccordionContent>
                     </AccordionItem>
-                    
-                    <AccordionItem value="item-2">
+                )}
+                    <AccordionItem value="change-password">
                       <AccordionTrigger>Change Password</AccordionTrigger>
                       <AccordionContent>
                         <ChangePassword />
@@ -94,7 +94,6 @@ export default function AccountPage() {
                       </AccordionContent>
                     </AccordionItem> */}
                   </Accordion>
-                )}
               </div>
             </div>
           </CardContent>
