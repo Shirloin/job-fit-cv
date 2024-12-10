@@ -15,6 +15,9 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache \
+    openssl1.1-compat
+
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/node_modules /app/node_modules
 COPY --from=build /app/.next /app/.next
