@@ -24,5 +24,5 @@ COPY --from=build /app/.next /app/.next
 COPY --from=build /app/public /app/public
 COPY --from=build /app/prisma /app/prisma
 
-EXPOSE 5001
+EXPOSE 5000
 CMD ["npm", "start"]
