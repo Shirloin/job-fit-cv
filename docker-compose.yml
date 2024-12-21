@@ -9,7 +9,7 @@ services:
     env_file:
       - .env.prod
     ports:
-      - "5001:5001"
+      - "5000:5000"
     networks:
       - network
     depends_on:
