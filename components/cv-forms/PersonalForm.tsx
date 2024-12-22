@@ -60,14 +60,14 @@ export default function PersonalForm() {
             </Label>
           </div> */}
           <div className="w-full">
-            <Label htmlFor="position">Position</Label>
+            <Label htmlFor="position">Current Position / Desired Position (Optional)</Label>
             <Input
               className="mt-1"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 updateData('position', e.target.value)
               }
               value={profile.position}
-              placeholder="Position"
+              placeholder="Current Position / Desired Position"
               id="position"
               type="text"
             />

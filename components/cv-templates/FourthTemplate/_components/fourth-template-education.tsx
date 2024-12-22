@@ -17,8 +17,8 @@ export default function FourthTemplateEducation({
       <div className="flex flex-col items-start my-1">
         <div className="font-bold leading-none mb-2 w-full mt-2 uppercase">
           <h1>Education</h1>
-          <hr className="w-full border-primary mt-4 -mb-3" />
         </div>
+        <hr className="w-full border-primary my-1" />
         {educations.map((education, index) => (
           <EducationItem key={index} education={education} />
         ))}

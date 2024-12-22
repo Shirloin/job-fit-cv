@@ -16,10 +16,10 @@ export default function FourthTemplateExperience({
   return (
     <>
       <div className="flex flex-col items-start">
-        <div className="font-bold leading-none mb-2 w-full mt-2 uppercase">
+        <div className="font-bold leading-none my-2 w-full  uppercase">
           <h1>Experience</h1>
         </div>
-        <hr className="w-full border-primary mt-2 -mb-1" />
+        <hr className="w-full border-primary my-1" />
         {experiences.map((experience, index) => {
           return <ExperienceItem key={index} experience={experience} />;
         })}

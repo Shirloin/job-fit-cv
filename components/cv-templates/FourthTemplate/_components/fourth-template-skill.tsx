@@ -15,14 +15,15 @@ export default function FourthTemplateSkill({
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-1 mr-1 my-1">
-        <div className="font-bold leading-none mb-2 bg-emerald-100 w-full py-1 px-2 mt-2 col-span-2">
+      <div className="grid grid-cols-2 gap-1 my-1">
+        <div className="font-bold leading-none mb-1 mt-2 w-full col-span-2">
           <h1>Skills</h1>
+          <hr className="w-full border-primary mt-3" />
         </div>
         {skills.map((skill, index) => (
           <h1
             key={index}
-            className="font-normal text-start text-l leading-none my-1 ml-2"
+            className="font-normal text-start text-l leading-none my-1 "
           >
             {skill.name}
           </h1>

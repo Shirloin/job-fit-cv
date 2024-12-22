@@ -57,7 +57,7 @@ export default function FourthTemplateProfile({
           )}
         </div>
       </div>
-      <hr className="w-full border-primary mt-4 mb-1" />
+      <hr className="w-full border-primary mt-1 mb-1" />
       <h1 className="self-center text-m leading-tight text-wrap my-1">
         {summary}
       </h1>

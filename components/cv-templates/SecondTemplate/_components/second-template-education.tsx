@@ -12,7 +12,7 @@ export default function SecondTemplateEducation({
   return (
     <div className="text-l w-[90%]">
       <p className="uppercase text-[12px] font-bold">Education</p>
-      <div className="border-t border-1 border-black w-full m-auto mt-3 -mb-1"></div>
+      <div className="border-t border-1 border-black w-full m-auto mt-2 mb-1"></div>
       <div className="flex flex-col gap-1">
         {educations.map((education, index) => (
           <EducationItem key={index} education={education} />
