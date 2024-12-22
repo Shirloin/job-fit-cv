@@ -12,7 +12,6 @@ export type TUser = {
   role?: string
   name?: string;
   email?: string;
-  gpa?: number;
   image?: string;
   campus?: string;
   student_subject_scores?: TStudentSubjectScore[] | null
