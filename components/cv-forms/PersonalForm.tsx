@@ -28,16 +28,6 @@ export default function PersonalForm() {
     setIsLoading(false);
   };
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const reader = new FileReader();
-    if (event.target.files && event.target.files?.[0]) {
-      reader.onloadend = () => {
-        const url = reader.result as string;
-        updateData('image', url);
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  };
 
   return (
     <>
