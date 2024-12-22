@@ -17,7 +17,6 @@ export default function FirstTemplateProfile({
   const email = profile ? profile.email : user.email;
   const github = profile ? profile.github : user.github;
   const linkedin = profile ? profile.linkedin : user.linkedin;
-  const image = profile ? profile.image : user.image;
   const summary = profile ? profile.summary : user.summary;
 
   return (

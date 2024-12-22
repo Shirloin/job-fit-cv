@@ -15,7 +15,6 @@ export type TProfile = {
     email: string,
     github: string,
     linkedin: string,
-    image: string,
     position: string,
     summary: string,
 }

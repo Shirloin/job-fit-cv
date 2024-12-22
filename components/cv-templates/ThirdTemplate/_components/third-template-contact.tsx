@@ -11,7 +11,6 @@ export default function ThirdTemplateContact({
   const email = profile ? profile.email : user.email;
   const github = profile ? profile.github : user.github;
   const linkedin = profile ? profile.linkedin : user.linkedin;
-  const image = profile ? profile.image : user.image;
 
   return (
     <>

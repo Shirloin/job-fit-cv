@@ -50,7 +50,6 @@ model Position {
 
 model Program {
   id                      String                    @id @default(uuid())
-  // academicCode            String                    @unique
   name                    String                    @unique
   users                   User[]
   CompanyPositionRequired CompanyPositionRequired[]

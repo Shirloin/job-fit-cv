@@ -13,7 +13,6 @@ export default function SecondTemplateProfile({
     ? profile.firstName + " " + profile.lastName
     : user.firstName + " " + user.lastName;
   const position = profile ? profile.position : user.position;
-  const image = profile ? profile.image : user.image;
 
   return (
     <>
