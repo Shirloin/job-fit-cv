@@ -62,7 +62,7 @@ export default function AccountPage() {
                       {user && user.name}
                     </h1>
                     <h1 className="text-m sm:text-xs font-semibold">
-                      {user && user.nim}
+                      {user && user.username}
                     </h1>
                     <h1 className="text-m sm:text-xs font-semibold">
                       {user && user.email}

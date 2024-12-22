@@ -28,7 +28,7 @@ export default function StudentCVSheet({
   student,
   ...props
 }: StudentCVSheetProps) {
-  const { data: cv, isLoading, isError } = useFetchStudentCV(student.nim!);
+  const { data: cv, isLoading, isError } = useFetchStudentCV(student.username!);
 
   const templates = [
     <FirstTemplate key={1} cv={cv} />,
@@ -56,7 +56,7 @@ export default function StudentCVSheet({
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save(`${student.nim}.pdf`);
+      pdf.save(`${student.username}.pdf`);
     }
   };
 

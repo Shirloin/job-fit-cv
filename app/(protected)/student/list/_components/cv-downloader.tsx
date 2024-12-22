@@ -52,7 +52,7 @@ export function CVDownloader({ students }: { students: TUser[] }) {
             const mainZip = new JSZip();
 
             for (const student of students) {
-                const response = await UserService.getCV(student.nim);
+                const response = await UserService.getCV(student.username);
                 const cv = response.data.cv as TCV;
                 console.log(cv)
 
@@ -70,7 +70,7 @@ export function CVDownloader({ students }: { students: TUser[] }) {
                             callback: () => {
                                 const pdfBlob = pdf.output("blob");
                                 const folderName = "CVs";
-                                const fileName = `${student.nim}.pdf`;
+                                const fileName = `${student.username}.pdf`;
                                 mainZip.file(`${folderName}/${fileName}`, pdfBlob);
                                 document.body.removeChild(target);
                                 resolve();

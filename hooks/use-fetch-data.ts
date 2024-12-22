@@ -83,7 +83,7 @@ export const useFetchUserCV = () => {
   const user = useCurrentUser()
   const fetchUserCV = async () => {
     try {
-      const response = await UserService.getCV(user.nim)
+      const response = await UserService.getCV(user.username)
       if (response.data) {
         return response.data.cv as TCV
       }

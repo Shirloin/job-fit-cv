@@ -55,7 +55,7 @@ export function getStudentColumns(
         return <DataTableColumnHeader column={column} title="NIM" />;
       },
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("nim")}</div>
+        <div className="capitalize">{row.getValue("username")}</div>
       ),
     },
     {

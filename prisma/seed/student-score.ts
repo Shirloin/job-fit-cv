@@ -20,7 +20,7 @@ export async function seedStudentScore() {
             const semesterName = row.semester_name;
             const semesterStartDate = row.semester_start_date;
             const semesterEndDate = row.semester_end_date;
-            const nim = row.nim;
+            const username = row.nim;
             const subjectName = row.subject_name;
             const subjectType = row.subject_type;
             const score = row.score;
@@ -42,11 +42,11 @@ export async function seedStudentScore() {
                 })
             }
             const user = await prisma.user.findUnique({
-                where: { nim: nim }
+                where: { username: username }
             });
 
             if (!user) {
-                console.error(`Student not found: ${nim}`);
+                console.error(`Student not found: ${username}`);
                 return
             }
             const subject = await prisma.subject.upsert({

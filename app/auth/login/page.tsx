@@ -11,12 +11,12 @@ import toast from "react-hot-toast";
 export default function LoginPage() {
   const router = useRouter();
   const { data: session, update } = useSession();
-  const [nim, setNim] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
     try {
-      const res = await logIn(nim, password);
+      const res = await logIn(username, password);
       if (res?.error) {
         toast.error(res.error);
       } else {
@@ -40,19 +40,19 @@ export default function LoginPage() {
             />
             <form className="w-[240px] sm:w-80">
               <div className="flex flex-col sm:my-2">
-                <label className="pb-2 font-semibold" htmlFor="nim">
-                  NIM
+                <label className="pb-2 font-semibold" htmlFor="username">
+                  Username
                 </label>
                 <input
                   className="p-2 ring-1 ring-black rounded-md"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setNim(e.target.value);
+                    setUsername(e.target.value);
                   }}
-                  value={nim}
-                  name="nim"
-                  id="nim"
+                  value={username}
+                  name="username"
+                  id="username"
                   type="text"
-                  placeholder="NIM"
+                  placeholder="Username"
                 />
               </div>
               <div className="flex flex-col my-2">

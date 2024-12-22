@@ -17,7 +17,7 @@ export default function ProfileHeader({ user }: { user: TUser }) {
         </div>
         <div className="self-end">
           <h1 className="text-header">Welcome, {user?.name}</h1>
-          <h1 className="text-sub-header">{user?.nim}</h1>
+          <h1 className="text-sub-header">{user?.username}</h1>
           <h1 className="text-sub-header">{user?.program?.name}</h1>
           <h1 className="text-sub-header">GPA: {user?.gpa}</h1>
         </div>

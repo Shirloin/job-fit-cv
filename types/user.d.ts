@@ -10,7 +10,6 @@ export type TUser = {
   id: string;
   username: string;
   role?: string
-  nim?: string;
   name?: string;
   email?: string;
   gpa?: number;

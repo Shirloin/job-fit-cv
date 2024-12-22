@@ -4,7 +4,7 @@ const SCHEMA = prisma.studentSubjectScore;
 
 export default class StudentScoreRepository {
     static getStudentScorePerSemester = async (
-        nim: string,
+        username: string,
         semesterName: string,
         startDate: Date,
         endDate: Date
@@ -12,7 +12,7 @@ export default class StudentScoreRepository {
         return SCHEMA.findMany({
             where: {
                 student: {
-                    nim: nim,
+                    username: username,
                 },
                 semester: {
                     name: semesterName,

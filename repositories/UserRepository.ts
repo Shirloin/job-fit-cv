@@ -19,7 +19,6 @@ export default class UserRepository {
         username: username,
         password: await bcrypt.hash(username, 10),
         name: name,
-        nim: username,
         email: email,
         role: role,
         program: {
@@ -74,10 +73,10 @@ export default class UserRepository {
     });
   }
 
-  static async getCV(nim: string) {
+  static async getCV(username: string) {
     return await SCHEMA.findUnique({
       where: {
-        nim: nim,
+        username: username,
       },
       select: {
         cv: true,
@@ -120,10 +119,10 @@ export default class UserRepository {
     })
   }
 
-  static async getUserRecommendedCompany(nim: string) {
+  static async getUserRecommendedCompany(username: string) {
     return await SCHEMA.findFirst({
       where: {
-        nim: nim
+        username: username
       },
       select: {
         recommendedCompanies: {
