@@ -50,7 +50,7 @@ export function getStudentColumns(
       enableHiding: false,
     },
     {
-      accessorKey: "nim",
+      accessorKey: "username",
       header: ({ column }) => {
         return <DataTableColumnHeader column={column} title="NIM" />;
       },
