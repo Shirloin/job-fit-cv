@@ -173,7 +173,7 @@ export default function CreateCompanyPage() {
                   </Popover>
                   <Button
                     onClick={handleSubmit}
-                    className="self-end w-fit px-6 my-2 bg-green-500 hover:bg-green-500"
+                    className="self-start w-fit px-6 my-2 bg-green-500 hover:bg-green-500"
                     variant={"default"}
                   >
                     Save
