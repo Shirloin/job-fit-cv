@@ -18,7 +18,6 @@ import StudentCVSheet from "./student-cv-sheet";
 import UpdateStudentSheet from "./update-student-sheet";
 import { TProgram } from "@/types/program";
 import DeleteStudent from "./delete-student";
-import { useFetchStudentCV } from "@/hooks/use-fetch-data";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export function getStudentColumns(

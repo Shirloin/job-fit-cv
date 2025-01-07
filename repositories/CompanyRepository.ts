@@ -43,12 +43,12 @@ export default class CompanyRepository {
     });
   };
 
-  static getRecommendedCompany = async (userId: string) => {
+  static getRecommendedCompany = async (nim: string) => {
     return SCHEMA.findMany({
       where: {
         recomendedToUsers: {
           some: {
-            id: userId
+            nim: nim
           }
         }
       },

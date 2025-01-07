@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import UserRepository from "@/repositories/UserRepository";
 
-export async function GET(req: NextRequest, { params }: { params: { username: string } }) {
-    const { username } = params;
+export async function GET(req: NextRequest, { params }: { params: { nim: string } }) {
+    const { nim } = params;
 
     try {
-        const cv = await getCV(username);
+        const cv = await getCV(nim);
 
         return NextResponse.json(cv, { status: 200 });
     } catch (error) {
@@ -14,6 +14,6 @@ export async function GET(req: NextRequest, { params }: { params: { username: st
     }
 }
 
-async function getCV(username: string) {
-    return await UserRepository.getCV(username);
+async function getCV(nim: string) {
+    return await UserRepository.getCV(nim);
 }

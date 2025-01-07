@@ -10,7 +10,6 @@ import SecondTemplate from "@/components/cv-templates/SecondTemplate/page";
 import ThirdTemplate from "@/components/cv-templates/ThirdTemplate/page";
 import FourthTemplate from "@/components/cv-templates/FourthTemplate/page";
 import FifthTemplate from "@/components/cv-templates/FifthTemplate/page";
-import { useFetchStudentCV } from "@/hooks/use-fetch-data";
 import { TUser } from '@/types/user';
 import { DownloadIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';

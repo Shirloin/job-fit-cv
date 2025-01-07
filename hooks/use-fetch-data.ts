@@ -97,10 +97,10 @@ export const useFetchUserCV = () => {
     queryFn: fetchUserCV,
   });
 }
-export const useFetchStudentCV = (id: string) => {
+export const useFetchStudentCV = (nim: string) => {
   const fetchUserCV = async () => {
     try {
-      const response = await UserService.getCV(id)
+      const response = await UserService.getCV(nim)
       if (response.data) {
         const cv = response.data.cv as TCV
         if (cv) {

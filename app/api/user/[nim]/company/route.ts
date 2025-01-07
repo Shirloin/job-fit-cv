@@ -1,10 +1,10 @@
 import CompanyRepository from "@/repositories/CompanyRepository";
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-    const id = params.id;
+export async function GET(req: NextRequest, { params }: { params: { nim: string } }) {
+    const nim = params.nim;
     const companies = await getCompanies();
-    const recommendedCompanies = await getUserRecommendedCompany(id)
+    const recommendedCompanies = await getUserRecommendedCompany(nim)
     const recommendedCompanyIds = recommendedCompanies.map(company => company.id) || [];
 
     const companiesWithStatus = companies.map(company => ({
@@ -13,8 +13,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }));
     return NextResponse.json(companiesWithStatus)
 }
-async function getUserRecommendedCompany(id: string) {
-    return await CompanyRepository.getRecommendedCompany(id)
+async function getUserRecommendedCompany(nim: string) {
+    return await CompanyRepository.getRecommendedCompany(nim)
 }
 async function getCompanies() {
     return await CompanyRepository.getCompanies();

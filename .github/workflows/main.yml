@@ -33,6 +33,7 @@ jobs:
             echo APP_ENV = ${{secrets.APP_ENV}} >> .env
             echo NEXTAUTH_URL = ${{secrets.NEXTAUTH_URL}} >> .env
             echo AUTH_TRUST_HOST = ${{secrets.AUTH_TRUST_HOST}} >> .env
+            echo NEXT_PUBLIC_OTHER_PATH = ${{secrets.NEXT_PUBLIC_OTHER_PATH}} >> .env
 
       - #Build the container image and push it to Docker Hub with name job-fit-cv
           name: Build and push

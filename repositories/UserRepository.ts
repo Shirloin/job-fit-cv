@@ -73,10 +73,10 @@ export default class UserRepository {
     });
   }
 
-  static async getCV(username: string) {
+  static async getCV(nim: string) {
     return await SCHEMA.findUnique({
       where: {
-        username: username,
+        username: nim,
       },
       select: {
         cv: true,

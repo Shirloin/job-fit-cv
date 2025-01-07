@@ -22,8 +22,8 @@ export class UserService {
     });
   }
 
-  static getCV(id: string) {
-    return axios.get(`${process.env.NEXT_PUBLIC_BASE_PATH}/api/user/cv/${id}`);
+  static getCV(nim: string) {
+    return axios.get(`${process.env.NEXT_PUBLIC_BASE_PATH}/api/user/${nim}/cv`);
   }
 
   static changePassword(
@@ -40,9 +40,9 @@ export class UserService {
     });
   }
 
-  static getCompanies(id: string) {
+  static getCompanies(nim: string) {
     return axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_PATH}/api/user/${id}/company`
+      `${process.env.NEXT_PUBLIC_BASE_PATH}/api/user/${nim}/company`
     );
   }
 
