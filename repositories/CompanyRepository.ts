@@ -48,7 +48,7 @@ export default class CompanyRepository {
       where: {
         recomendedToUsers: {
           some: {
-            nim: nim
+            username: nim
           }
         }
       },
