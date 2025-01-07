@@ -53,9 +53,13 @@ export const {
       const isApiRoute = pathname.includes("api")
       const referer = headers.get("referer")
       const allowedOrigin = process.env.NEXT_PUBLIC_BASE_PATH as string
+      const allowedOtherOrigin = process.env.NEXT_PUBLIC_OTHER_PATH as string
 
-      if (isApiRoute && (!referer || !referer.startsWith(allowedOrigin))) {
+      if (isApiRoute && (!referer || (!referer.startsWith(allowedOrigin) && !referer.startsWith(allowedOtherOrigin)))) {
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      }
+      if (isApiRoute) {
+        return true;
       }
 
       if (!isLoggedIn && (isAdminRoute || isStudentRoute || isProtectedRoute)) {
