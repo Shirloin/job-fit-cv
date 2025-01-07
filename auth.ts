@@ -54,6 +54,7 @@ export const {
       const referer = headers.get("referer")
       const allowedOrigin = process.env.NEXT_PUBLIC_BASE_PATH as string
       const allowedOtherOrigin = process.env.NEXT_PUBLIC_OTHER_PATH as string
+      console.log("Env NEXT_PUBLIC_OTHER_PATH:", process.env.NEXT_PUBLIC_OTHER_PATH);
 
       if (isApiRoute && (!referer || (!referer.startsWith(allowedOrigin) && !referer.startsWith(allowedOtherOrigin)))) {
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
