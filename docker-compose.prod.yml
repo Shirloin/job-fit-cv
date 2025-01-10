@@ -3,8 +3,6 @@ services:
   app:
     image: riccardo006/job-fit-cv:latest
     container_name: job-fit-cv
-    env_file:
-      - .env
     ports:
       - "${APP_PORT}:${APP_PORT}"
     restart: on-failure
@@ -15,6 +13,7 @@ services:
         condition: service_healthy
     environment:
       - DATABASE_URL=${DATABASE_URL}
+
 
 networks:
   network:
