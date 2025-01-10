@@ -9,16 +9,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useDataTable } from "@/hooks/use-data-table";
-import { CompanyService } from "@/services/CompanyService";
-import { TCompany } from "@/types/company";
-import { useQuery } from "@tanstack/react-query";
-import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
 import { CompanyTable } from "./_components/company-table";
 import {
   useFetchAllCompanies,

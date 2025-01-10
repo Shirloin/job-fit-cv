@@ -3,7 +3,6 @@ import { PositionService } from "@/services/PositionService";
 import { ProgramService } from "@/services/ProgramService";
 import { UserService } from "@/services/UserService";
 import { TCompany } from "@/types/company";
-import { TPosition } from "@/types/position";
 import { TProgram } from "@/types/program";
 import { TUser } from "@/types/user";
 import { useQuery } from "@tanstack/react-query";
@@ -32,18 +31,25 @@ export const useFetchAllCompanies = () => {
   const fetchRecommendedCompany = async () => {
     try {
 
-      const response = await UserService.getCompanies(user.id)
+      const response = await UserService.getCompanies(user.username)
       return response.data as TCompany[]
     } catch (error) {
       console.error("Error fetching recommended company:", error);
       throw new Error("Failed to fetch recommended company");
     }
   }
-  return useQuery({
+
+  const query = useQuery({
     queryKey: ["companies"],
     queryFn: fetchRecommendedCompany,
-    enabled: !!user?.id,
+    enabled: !!user?.username,
+    staleTime: 0
   })
+  return {
+    data: query.isFetching ? undefined : query.data,
+    isLoading: query.isLoading,
+    isError: query.isError
+  }
 };
 
 export const useFetchAllPrograms = () => {
