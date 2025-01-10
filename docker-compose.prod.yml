@@ -8,9 +8,6 @@ services:
     restart: on-failure
     networks:
       - network
-    depends_on:
-      postgres:
-        condition: service_healthy
     environment:
       - DATABASE_URL=${DATABASE_URL}
 
