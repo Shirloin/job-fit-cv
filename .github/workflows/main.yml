@@ -8,18 +8,18 @@ jobs:
   build:
     name:  Build Docker Image
     runs-on: ubuntu-latest
-    env:
-      APP_PORT: ${{ secrets.APP_PORT }}
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
-      NEXT_PUBLIC_OPENAI_API_KEY: ${{ secrets.NEXT_PUBLIC_OPENAI_API_KEY }}
-      NEXT_PUBLIC_BASE_PATH: ${{ secrets.NEXT_PUBLIC_BASE_PATH }}
-      NEXT_PUBLIC_JOB_RECOMMENDER_PATH: ${{ secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH }}
-      SECRET: ${{ secrets.SECRET }}
-      APP_ENV: ${{ secrets.APP_ENV }}
-      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-      AUTH_TRUST_HOST: ${{ secrets.AUTH_TRUST_HOST }}
-      NEXT_PUBLIC_OTHER_PATH: ${{ secrets.NEXT_PUBLIC_OTHER_PATH }}
+    # env:
+    #   APP_PORT: ${{ secrets.APP_PORT }}
+    #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    #   AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+    #   NEXT_PUBLIC_OPENAI_API_KEY: ${{ secrets.NEXT_PUBLIC_OPENAI_API_KEY }}
+    #   NEXT_PUBLIC_BASE_PATH: ${{ secrets.NEXT_PUBLIC_BASE_PATH }}
+    #   NEXT_PUBLIC_JOB_RECOMMENDER_PATH: ${{ secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH }}
+    #   SECRET: ${{ secrets.SECRET }}
+    #   APP_ENV: ${{ secrets.APP_ENV }}
+    #   NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+    #   AUTH_TRUST_HOST: ${{ secrets.AUTH_TRUST_HOST }}
+    #   NEXT_PUBLIC_OTHER_PATH: ${{ secrets.NEXT_PUBLIC_OTHER_PATH }}
     steps:
       - #checkout to the repository on the build machine
         name: Checkout
@@ -68,5 +68,16 @@ jobs:
               cd job-fit-cv
               docker pull ${{secrets.DOCKERHUB_USERNAME}}/job-fit-cv:latest
               curl -o docker-compose.prod.yml https://raw.githubusercontent.com/shirloin/job-fit-cv/main/docker-compose.prod.yml
+              export OPENAI_API_KEY=${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}}
+              export DATABASE_URL=${{secrets.DATABASE_URL}}
+              export APP_PORT=${{secrets.APP_PORT}}
+              export NEXT_PUBLIC_OPENAI_API_KEY=${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}}
+              export NEXT_PUBLIC_BASE_PATH=${{secrets.NEXT_PUBLIC_BASE_PATH}}
+              export NEXT_PUBLIC_JOB_RECOMMENDER_PATH=${{secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH}}
+              export SECRET=${{secrets.SECRET}}
+              export APP_ENV=${{secrets.APP_ENV}}
+              export NEXTAUTH_URL=${{secrets.NEXTAUTH_URL}}
+              export AUTH_TRUST_HOST=${{secrets.AUTH_TRUST_HOST}}
+              export NEXT_PUBLIC_OTHER_PATH=${{secrets.NEXT_PUBLIC_OTHER_PATH}}
               docker compose -f docker-compose.prod.yml up -d
         
