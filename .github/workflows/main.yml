@@ -32,21 +32,21 @@ jobs:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
-      - #Create env
-          name: Create .env
-          run: |
-            touch .env
-            echo APP_PORT = ${{secrets.APP_PORT}} >> .env
-            echo DATABASE_URL = ${{secrets.DATABASE_URL}} >> .env
-            echo AUTH_SECRET = ${{secrets.AUTH_SECRET}} >> .env
-            echo NEXT_PUBLIC_OPENAI_API_KEY = ${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}} >> .env
-            echo NEXT_PUBLIC_BASE_PATH = ${{secrets.NEXT_PUBLIC_BASE_PATH}} >> .env
-            echo NEXT_PUBLIC_JOB_RECOMMENDER_PATH = ${{secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH}} >> .env
-            echo SECRET = ${{secrets.SECRET}} >> .env
-            echo APP_ENV = ${{secrets.APP_ENV}} >> .env
-            echo NEXTAUTH_URL = ${{secrets.NEXTAUTH_URL}} >> .env
-            echo AUTH_TRUST_HOST = ${{secrets.AUTH_TRUST_HOST}} >> .env
-            echo NEXT_PUBLIC_OTHER_PATH = ${{secrets.NEXT_PUBLIC_OTHER_PATH}} >> .env
+      # - #Create env
+      #     name: Create .env
+      #     run: |
+      #       touch .env
+      #       echo APP_PORT = ${{secrets.APP_PORT}} >> .env
+      #       echo DATABASE_URL = ${{secrets.DATABASE_URL}} >> .env
+      #       echo AUTH_SECRET = ${{secrets.AUTH_SECRET}} >> .env
+      #       echo NEXT_PUBLIC_OPENAI_API_KEY = ${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}} >> .env
+      #       echo NEXT_PUBLIC_BASE_PATH = ${{secrets.NEXT_PUBLIC_BASE_PATH}} >> .env
+      #       echo NEXT_PUBLIC_JOB_RECOMMENDER_PATH = ${{secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH}} >> .env
+      #       echo SECRET = ${{secrets.SECRET}} >> .env
+      #       echo APP_ENV = ${{secrets.APP_ENV}} >> .env
+      #       echo NEXTAUTH_URL = ${{secrets.NEXTAUTH_URL}} >> .env
+      #       echo AUTH_TRUST_HOST = ${{secrets.AUTH_TRUST_HOST}} >> .env
+      #       echo NEXT_PUBLIC_OTHER_PATH = ${{secrets.NEXT_PUBLIC_OTHER_PATH}} >> .env
 
       - #Build the container image and push it to Docker Hub with name job-fit-cv
           name: Build and push
@@ -71,5 +71,14 @@ jobs:
               touch .env
               echo APP_PORT = ${{secrets.APP_PORT}} >> .env
               echo DATABASE_URL = ${{secrets.DATABASE_URL}} >> .env
+              echo AUTH_SECRET = ${{secrets.AUTH_SECRET}} >> .env
+              echo NEXT_PUBLIC_OPENAI_API_KEY = ${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}} >> .env
+              echo NEXT_PUBLIC_BASE_PATH = ${{secrets.NEXT_PUBLIC_BASE_PATH}} >> .env
+              echo NEXT_PUBLIC_JOB_RECOMMENDER_PATH = ${{secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH}} >> .env
+              echo SECRET = ${{secrets.SECRET}} >> .env
+              echo APP_ENV = ${{secrets.APP_ENV}} >> .env
+              echo NEXTAUTH_URL = ${{secrets.NEXTAUTH_URL}} >> .env
+              echo AUTH_TRUST_HOST = ${{secrets.AUTH_TRUST_HOST}} >> .env
+              echo NEXT_PUBLIC_OTHER_PATH = ${{secrets.NEXT_PUBLIC_OTHER_PATH}} >> .env
               docker compose -f docker-compose.prod.yml up -d
         
