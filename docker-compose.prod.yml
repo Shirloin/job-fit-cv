@@ -11,17 +11,15 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - network
+      - shared-network
     environment:
       - DATABASE_URL=${DATABASE_URL}
 
 
 networks:
-  network:
-    driver: bridge
+  shared-network:
     external: true
 
 volumes:
   pgdata:
     driver: local
-    external: true
