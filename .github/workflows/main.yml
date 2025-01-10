@@ -15,7 +15,7 @@ jobs:
 
       - #Login to docker hub using secret in github
         name: Login to docker hub
-        uses: docker/login-action/@v2
+        uses: docker/login-action@v2
         with:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
@@ -24,6 +24,7 @@ jobs:
           name: Create .env
           run: |
             touch .env
+            echo APP_PORT = ${{secrets.APP_PORT}} >> .env
             echo DATABASE_URL = ${{secrets.DATABASE_URL}} >> .env
             echo AUTH_SECRET = ${{secrets.AUTH_SECRET}} >> .env
             echo NEXT_PUBLIC_OPENAI_API_KEY = ${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}} >> .env
