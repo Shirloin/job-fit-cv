@@ -6,7 +6,7 @@ on:
       - "main"
 jobs:
   build:
-    name:  Build Docker Image
+    name:  Github action job-fit-cv
     runs-on: ubuntu-latest
     # env:
     #   APP_PORT: ${{ secrets.APP_PORT }}
