@@ -8,6 +8,8 @@ services:
     ports:
       - "${APP_PORT}:${APP_PORT}"
     restart: on-failure
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     networks:
       - network
     environment:
