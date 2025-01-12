@@ -54,10 +54,7 @@ jobs:
           password: ${{secrets.VPS_PASSWORD}}
           script: |
             cd job-fit-cv
-            docker pull ${{secrets.DOCKERHUB_USERNAME}}/job-fit-cv:latest
             curl -o docker-compose.prod.yml https://raw.githubusercontent.com/shirloin/job-fit-cv/main/docker-compose.prod.yml
-            touch .env
-            sed -i '/^APP_PORT=/c\APP_PORT=${{secrets.APP_PORT}}' .env || echo 'APP_PORT=${{secrets.APP_PORT}}' >> .env
-            sed -i '/^DATABASE_URL=/c\DATABASE_URL=${{secrets.DATABASE_URL}}' .env || echo 'DATABASE_URL=${{secrets.DATABASE_URL}}' >> .env
+            docker pull ${{secrets.DOCKERHUB_USERNAME}}/job-fit-cv:latest
             docker compose -f docker-compose.prod.yml up -d
         
