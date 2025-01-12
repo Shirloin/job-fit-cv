@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npx prisma generate
-RUN npx auth secret > .env
+RUN npx auth secret
 RUN npm run build
 
 # Stage 2: Runtime
