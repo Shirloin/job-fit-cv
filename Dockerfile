@@ -18,11 +18,7 @@ WORKDIR /app
 RUN apk add --no-cache openssl
 
 
-COPY --from=build /app/package*.json ./
-COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/.next /app/.next
-COPY --from=build /app/public /app/public
-COPY --from=build /app/prisma /app/prisma
+COPY --from=build /app /app
 
 EXPOSE 1234
 CMD ["npm", "start"]
