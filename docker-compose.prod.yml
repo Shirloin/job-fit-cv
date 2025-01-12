@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     ports:
-      - "5000:5000"
+      - "1234:1234"
     restart: on-failure
     networks:
       - network
@@ -18,7 +18,7 @@ services:
     container_name: job-fit-cv-db
     restart: on-failure
     ports:
-      - "5432:5432"
+      - "6543:6543"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
