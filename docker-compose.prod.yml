@@ -3,39 +3,20 @@ services:
   app:
     image: riccardo006/job-fit-cv:latest
     container_name: job-fit-cv
-    env_file:
-      - .env
     ports:
       - "1234:1234"
     restart: on-failure
-    networks:
-      - network
-    depends_on:
-      postgres:
-        condition: service_healthy
-  postgres:
-    image: postgres
-    container_name: job-fit-cv-db
-    restart: on-failure
-    ports:
-      - "6543:6543"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=job-fit-cv
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
-      - network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d job-fit-cv"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
+      - shared-network
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres/job-fit-cv?schema=public
+
+
 networks:
-  network:
-    driver: bridge
+  shared-network:
+    external: true
 
 volumes:
   pgdata:
