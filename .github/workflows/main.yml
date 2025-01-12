@@ -21,43 +21,43 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
       - #Create env
-          name: Create .env
-          run: |
-            touch .env
-            echo APP_PORT = ${{secrets.APP_PORT}} >> .env
-            echo DATABASE_URL = ${{secrets.DATABASE_URL}} >> .env
-            echo AUTH_SECRET = ${{secrets.AUTH_SECRET}} >> .env
-            echo NEXT_PUBLIC_OPENAI_API_KEY = ${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}} >> .env
-            echo NEXT_PUBLIC_BASE_PATH = ${{secrets.NEXT_PUBLIC_BASE_PATH}} >> .env
-            echo NEXT_PUBLIC_JOB_RECOMMENDER_PATH = ${{secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH}} >> .env
-            echo SECRET = ${{secrets.SECRET}} >> .env
-            echo APP_ENV = ${{secrets.APP_ENV}} >> .env
-            echo NEXTAUTH_URL = ${{secrets.NEXTAUTH_URL}} >> .env
-            echo AUTH_TRUST_HOST = ${{secrets.AUTH_TRUST_HOST}} >> .env
-            echo NEXT_PUBLIC_OTHER_PATH = ${{secrets.NEXT_PUBLIC_OTHER_PATH}} >> .env
+        name: Create .env
+        run: |
+          touch .env
+          echo APP_PORT = ${{secrets.APP_PORT}} >> .env
+          echo DATABASE_URL = ${{secrets.DATABASE_URL}} >> .env
+          echo AUTH_SECRET = ${{secrets.AUTH_SECRET}} >> .env
+          echo NEXT_PUBLIC_OPENAI_API_KEY = ${{secrets.NEXT_PUBLIC_OPENAI_API_KEY}} >> .env
+          echo NEXT_PUBLIC_BASE_PATH = ${{secrets.NEXT_PUBLIC_BASE_PATH}} >> .env
+          echo NEXT_PUBLIC_JOB_RECOMMENDER_PATH = ${{secrets.NEXT_PUBLIC_JOB_RECOMMENDER_PATH}} >> .env
+          echo SECRET = ${{secrets.SECRET}} >> .env
+          echo APP_ENV = ${{secrets.APP_ENV}} >> .env
+          echo NEXTAUTH_URL = ${{secrets.NEXTAUTH_URL}} >> .env
+          echo AUTH_TRUST_HOST = ${{secrets.AUTH_TRUST_HOST}} >> .env
+          echo NEXT_PUBLIC_OTHER_PATH = ${{secrets.NEXT_PUBLIC_OTHER_PATH}} >> .env
 
       - #Build the container image and push it to Docker Hub with name job-fit-cv
-          name: Build and push
-          uses: docker/build-push-action@v4
-          with:
-            context: .
-            file: ./Dockerfile
-            push: true
-            tags: ${{secrets.DOCKERHUB_USERNAME}}/job-fit-cv:latest
+        name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/job-fit-cv:latest
         
       - #Deploy To VPS
-          name: Deploy to VPS
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{secrets.VPS_IP}}
-            username: ${{secrets.VPS_USERNAME}}
-            password: ${{secrets.VPS_PASSWORD}}
-            script: |
-              cd job-fit-cv
-              docker pull ${{secrets.DOCKERHUB_USERNAME}}/job-fit-cv:latest
-              curl -o docker-compose.prod.yml https://raw.githubusercontent.com/shirloin/job-fit-cv/main/docker-compose.prod.yml
-              touch .env
-              sed -i '/^APP_PORT=/c\APP_PORT=${{secrets.APP_PORT}}' .env || echo 'APP_PORT=${{secrets.APP_PORT}}' >> .env
-              sed -i '/^DATABASE_URL=/c\DATABASE_URL=${{secrets.DATABASE_URL}}' .env || echo 'DATABASE_URL=${{secrets.DATABASE_URL}}' >> .env
-              docker compose -f docker-compose.prod.yml up -d
+        name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.VPS_IP}}
+          username: ${{secrets.VPS_USERNAME}}
+          password: ${{secrets.VPS_PASSWORD}}
+          script: |
+            cd job-fit-cv
+            docker pull ${{secrets.DOCKERHUB_USERNAME}}/job-fit-cv:latest
+            curl -o docker-compose.prod.yml https://raw.githubusercontent.com/shirloin/job-fit-cv/main/docker-compose.prod.yml
+            touch .env
+            sed -i '/^APP_PORT=/c\APP_PORT=${{secrets.APP_PORT}}' .env || echo 'APP_PORT=${{secrets.APP_PORT}}' >> .env
+            sed -i '/^DATABASE_URL=/c\DATABASE_URL=${{secrets.DATABASE_URL}}' .env || echo 'DATABASE_URL=${{secrets.DATABASE_URL}}' >> .env
+            docker compose -f docker-compose.prod.yml up -d
         
