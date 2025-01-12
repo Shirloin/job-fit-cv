@@ -2,8 +2,6 @@ import NextAuth, { User } from "next-auth";
 import authConfig from "./auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./prisma/prisma";
-import UserRepository from "./repositories/UserRepository";
-import { TUser } from "./types/user";
 import { adminRoutes, authRoutes, protectedRoutes, publicRoutes, studentRoutes } from "./routes";
 import { NextResponse } from "next/server";
 
@@ -44,7 +42,7 @@ export const {
     async authorized({ request: { nextUrl, headers }, auth }) {
       const isLoggedIn = !!auth?.user
       const { pathname } = nextUrl
-      const role = auth?.user.role || 'user'
+      const role = auth?.user?.role || 'user'
 
       const isAuthRoute = authRoutes.includes(pathname);
       const isAdminRoute = adminRoutes.includes(pathname);
@@ -54,7 +52,6 @@ export const {
       const referer = headers.get("referer")
       const allowedOrigin = process.env.NEXT_PUBLIC_BASE_PATH as string
       const allowedOtherOrigin = process.env.NEXT_PUBLIC_OTHER_PATH as string
-      console.log("Env NEXT_PUBLIC_OTHER_PATH:", process.env.NEXT_PUBLIC_OTHER_PATH);
 
       if (isApiRoute && (!referer || (!referer.startsWith(allowedOrigin) && !referer.startsWith(allowedOtherOrigin)))) {
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
