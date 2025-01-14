@@ -30,7 +30,6 @@ export const useFetchAllCompanies = () => {
   const user = useCurrentUser()
   const fetchRecommendedCompany = async () => {
     try {
-
       const response = await UserService.getCompanies(user.username)
       return response.data as TCompany[]
     } catch (error) {
@@ -39,17 +38,11 @@ export const useFetchAllCompanies = () => {
     }
   }
 
-  const query = useQuery({
+  return useQuery({
     queryKey: ["companies"],
     queryFn: fetchRecommendedCompany,
     enabled: !!user?.username,
-    staleTime: 0
   })
-  return {
-    data: query.isFetching ? undefined : query.data,
-    isLoading: query.isLoading,
-    isError: query.isError
-  }
 };
 
 export const useFetchAllPrograms = () => {

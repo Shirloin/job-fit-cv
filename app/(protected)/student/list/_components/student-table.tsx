@@ -17,9 +17,9 @@ export function StudentTable({ students, programs }: StudentTableProps) {
   const columns = useMemo(() => getStudentColumns(programs), [programs]);
   const filterFields: DataTableFilterField<any>[] = [
     {
-      label: "Search Name",
-      value: "name",
-      placeholder: "Search Name...",
+      label: "Search student",
+      value: "username",
+      placeholder: "Search student...",
     },
     {
       label: "Major",
@@ -33,7 +33,7 @@ export function StudentTable({ students, programs }: StudentTableProps) {
   ];
 
   const { table } = useDataTable<TUser, unknown>({
-    data: students || [],
+    data: students,
     columns,
     pageCount: 10,
     defaultPerPage: 10,

@@ -53,7 +53,7 @@ export function getCompanyColumns(programs: TProgram[], user: any): ColumnDef<TC
       },
     },
     {
-      accessorFn: (row) => (row.status ? row.status : null),
+      accessorFn: (row) => (user?.role.toLowerCase() !== "student" ? row.status : "N/A"),
       accessorKey: "status",
       header: ({ column }) => {
         return (

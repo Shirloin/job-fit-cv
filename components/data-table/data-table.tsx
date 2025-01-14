@@ -33,6 +33,7 @@ export function DataTable<TData>({
     setMounted(true);
   }, []);
 
+
   if (!mounted) return null;
   return (
     <div

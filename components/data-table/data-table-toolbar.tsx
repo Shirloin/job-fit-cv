@@ -33,6 +33,7 @@ export function DataTableToolbar<TData>({
       filterableColumns: filterFields.filter((field) => field.options),
     };
   }, [filterFields]);
+
   return (
     <div
       className={cn(

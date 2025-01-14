@@ -17,7 +17,6 @@ import {
 import { logOut } from "@/actions/AuthAction";
 import { getAdminMenuList } from "@/lib/admin-menu-lists";
 import { getUserMenuList } from "@/lib/user-menu-lists";
-import { useCurrentSession } from "@/hooks/use-current-session";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
 interface MenuProps {

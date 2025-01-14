@@ -50,7 +50,7 @@ export default function CreateStudentPage() {
     campus: "",
   });
   const [roleOpen, setRoleOpen] = useState(false);
-  const [majorOpen, setMajorOpen] = useState(false);
+  const [programOpen, setProgramOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const { isLoading, setIsLoading } = useLoading();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -72,17 +72,18 @@ export default function CreateStudentPage() {
         form.program
       );
       toast.success("Create Account Success");
+      setForm({
+        username: "",
+        role: "",
+        name: "",
+        email: "",
+        program: "",
+        campus: "",
+      })
     } catch (error: any) {
       toast.error(error.response.data.msg);
     }
-    setForm({
-      username: "",
-      role: "",
-      name: "",
-      email: "",
-      program: "",
-      campus: "",
-    })
+    
   };
   const handleExcelSubmit = async () => {
     setIsLoading(true);
@@ -158,16 +159,16 @@ export default function CreateStudentPage() {
                     value={form.campus}
                     onChange={handleChange}
                   />
-                  <Label>Major</Label>
-                  <Popover open={majorOpen} onOpenChange={setMajorOpen}>
+                  <Label>Program</Label>
+                  <Popover open={programOpen} onOpenChange={setProgramOpen}>
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
                         role="combobox"
-                        aria-expanded={majorOpen}
+                        aria-expanded={programOpen}
                         className="w-full justify-between my-2"
                       >
-                        {form.program !== "" ? form.program : "Major"}
+                        {form.program !== "" ? form.program : "Program"}
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                       </Button>
                     </PopoverTrigger>
@@ -188,7 +189,7 @@ export default function CreateStudentPage() {
                                       ? program.name
                                       : "",
                                   });
-                                  setMajorOpen(false);
+                                  setProgramOpen(false);
                                 }}
                               >
                                 {program.name}
@@ -205,7 +206,7 @@ export default function CreateStudentPage() {
                       <Button
                         variant="outline"
                         role="combobox"
-                        aria-expanded={majorOpen}
+                        aria-expanded={programOpen}
                         className="w-full justify-between my-2"
                       >
                         {form.role !== "" ? form.role : "Role"}

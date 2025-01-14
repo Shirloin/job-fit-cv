@@ -23,7 +23,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { TCompany } from "@/types/company";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronsUpDown } from "lucide-react";
 import { TProgram } from "@/types/program";
@@ -45,6 +45,15 @@ export default function UpdateCompanySheet({
   const [program, setProgram] = useState(company.program?.name);
   const [position, setPosition] = useState(company.position?.name);
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (company) {
+      setName(company.name);
+      setPosition(company.position?.name);
+      setProgram(company.program?.name);
+    }
+  }, [company]);
+
   const handleSubmit = async () => {
     if (!name || !position || !program) {
       toast.error("All fields must be filled");
@@ -60,7 +69,13 @@ export default function UpdateCompanySheet({
 
       toast.success("Update Successful");
       queryClient.invalidateQueries({ queryKey: ["companies"] });
-    } catch (error) {}
+      setName("")
+      setProgram("")
+      setPosition("")
+
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (

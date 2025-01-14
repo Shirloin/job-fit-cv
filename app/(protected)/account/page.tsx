@@ -21,9 +21,7 @@ import {
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import ChangePassword from "./_components/change-password";
-import Score from "./_components/score";
 import SavedCV from "./_components/saved-cv";
-import { useCurrentSession } from "@/hooks/use-current-session";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
 export default function AccountPage() {
@@ -87,12 +85,6 @@ export default function AccountPage() {
                         <ChangePassword />
                       </AccordionContent>
                     </AccordionItem>
-                    {/* <AccordionItem value="item-2">
-                      <AccordionTrigger>Grade</AccordionTrigger>
-                      <AccordionContent>
-                        <Score />
-                      </AccordionContent>
-                    </AccordionItem> */}
                   </Accordion>
               </div>
             </div>

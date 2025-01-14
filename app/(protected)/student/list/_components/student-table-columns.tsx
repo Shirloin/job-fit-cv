@@ -82,7 +82,7 @@ export function getStudentColumns(
         return <DataTableColumnHeader column={column} title="Program" />;
       },
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("program")}</div>
+        <div className="capitalize ">{row.getValue("program")}</div>
       ),
       filterFn: (row, id, value) => {
         return Array.isArray(value) && value.includes(row.getValue(id));
@@ -91,10 +91,10 @@ export function getStudentColumns(
     {
       accessorKey: "campus",
       header: ({ column }) => {
-        return <DataTableColumnHeader column={column} title="Campus" />;
+        return <DataTableColumnHeader column={column} title="Campus" className="flex  " />;
       },
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("campus")}</div>
+        <div className="capitalize  ">{row.getValue("campus") ?? "N/A"}</div>
       ),
     },
     {
@@ -104,7 +104,7 @@ export function getStudentColumns(
         const [showStudentCV, setShowStudentCV] = useState(false);
         const [showSheet, setShowSheet] = useState(false)
         return (
-          <>
+          <div className="flex justify-center">
             {
               showStudentCV &&
               <StudentCVSheet student={row.original} open={showStudentCV} onOpenChange={setShowStudentCV} />
@@ -126,7 +126,7 @@ export function getStudentColumns(
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </>
+          </div>
         );
       },
     },

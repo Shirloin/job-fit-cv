@@ -23,7 +23,7 @@ interface UseDataTableProps<TData, TValue> {
   defaultSort?: `${Extract<keyof TData, string | number>}.${"asc" | "desc"}`;
   filterFields?: DataTableFilterField<TData>[];
   enableAdvancedFilter?: boolean;
-  onDelete?: ()=>void
+  onDelete?: () => void
 }
 
 export function useDataTable<TData, TValue>({
@@ -37,16 +37,17 @@ export function useDataTable<TData, TValue>({
   onDelete,
 }: UseDataTableProps<TData, TValue>) {
   const initialSort = defaultSort
-  ? [
+    ? [
       {
         id: defaultSort.split('.')[0] as string,
         desc: defaultSort.split('.')[1] === 'desc',
       },
     ]
-  : [];
+    : [];
   const [sorting, setSorting] = useState<SortingState>(initialSort);
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
 
   const table = useReactTable({
     data,
@@ -64,7 +65,7 @@ export function useDataTable<TData, TValue>({
       sorting,
       columnFilters,
     },
-    
+
   });
   return { table };
 }

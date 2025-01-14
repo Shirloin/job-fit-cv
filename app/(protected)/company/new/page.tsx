@@ -53,12 +53,12 @@ export default function CreateCompanyPage() {
   const [program, setProgram] = useState<string>("");
   const { setIsLoading } = useLoading();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
-      setInputKey(inputKey + 1); 
+      setInputKey(inputKey + 1);
     }
   };
 
@@ -69,13 +69,13 @@ export default function CreateCompanyPage() {
         position,
         program
       );
+      setName("")
+      setPosition("")
+      setProgram("")
       toast.success("Company inserted");
-    } catch (error:any) {
-      toast.error(error)
+    } catch (error: any) {
+      toast.error(error.response.data.msg)
     }
-    setName("")
-    setPosition("")
-    setProgram("")
   };
 
   const handleExcelSubmit = async () => {
@@ -88,7 +88,7 @@ export default function CreateCompanyPage() {
       const response = await CompanyService.insertCompanyUsingFile(file);
       setIsLoading(false);
       toast.success(response.data.msg);
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.response.data.msg)
     } finally {
       setIsLoading(false);
@@ -126,6 +126,7 @@ export default function CreateCompanyPage() {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setName(e.target.value);
                     }}
+                    value={name}
                   />
                   <Label>Position</Label>
                   <Input
@@ -134,8 +135,9 @@ export default function CreateCompanyPage() {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setPosition(e.target.value);
                     }}
+                    value={position}
                   />
-                  <Label>Major</Label>
+                  <Label>Program</Label>
                   <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                       <Button
@@ -144,13 +146,13 @@ export default function CreateCompanyPage() {
                         aria-expanded={open}
                         className="w-full justify-between my-2"
                       >
-                        {program !== "" ? program : "Major"}
+                        {program !== "" ? program : "Program"}
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className=" p-0" align="start">
                       <Command>
-                        <CommandInput placeholder="Search major..." />
+                        <CommandInput placeholder="Search Program..." />
                         <CommandList className="max-h-60 ">
                           <CommandEmpty>No position found.</CommandEmpty>
                           <CommandGroup>

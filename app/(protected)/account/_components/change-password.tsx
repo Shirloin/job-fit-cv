@@ -20,7 +20,10 @@ export default function ChangePassword() {
         newPassword,
         confirmPassword
       );
-      toast.success(response.data.msg);
+      toast.success("Password Saved");
+      setCurrentPassword("")
+      setNewPassword("")
+      setConfirmPassword("")
     } catch (error: any) {
       toast.error(error.response.data.msg);
     }

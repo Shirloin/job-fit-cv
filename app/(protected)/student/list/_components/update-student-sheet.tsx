@@ -23,7 +23,7 @@ import {
     CommandList,
 } from "@/components/ui/command";
 import { TCompany } from "@/types/company";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronsUpDown } from "lucide-react";
 import { TProgram } from "@/types/program";
@@ -50,6 +50,16 @@ export default function UpdateStudentSheet({
     const [email, setEmail] = useState(student.email)
     const [campus, setCampus] = useState(student.campus)
 
+    useEffect(() => {
+        if (student) {
+            setUsername(student.username)
+            setName(student.name);
+            setEmail(student.email);
+            setProgram(student.program?.name);
+            setCampus(student.campus)
+        }
+      }, [student]);
+
     const queryClient = useQueryClient();
     const handleSubmit = async () => {
         if (!name || !email || !program || !username || !campus) {
@@ -60,6 +70,11 @@ export default function UpdateStudentSheet({
             const response = await StudentService.updateStudent(student.id, username, name, email, campus, program)
             toast.success("Update Successful");
             queryClient.invalidateQueries({ queryKey: ["students"] });
+            setUsername("")
+            setName("")
+            setProgram("")
+            setEmail("")
+            setCampus("")
         } catch (error: any) {
             toast.error(error.response.data.msg)
         }

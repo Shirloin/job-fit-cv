@@ -1,3 +1,4 @@
+import { sendErrorResponse, validateField } from "@/lib/helper";
 import CompanyRepository from "@/repositories/CompanyRepository";
 import PositionRepository from "@/repositories/PositionRepository";
 import ProgramRepository from "@/repositories/ProgramRepository";
@@ -10,20 +11,30 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const { name, positionName, programName } = await req.json();
-  let position = await getPosition(positionName);
+  try {
+    validateField(name, "Company name is required");
+    validateField(positionName, "Position name is required");
+    validateField(programName, "Program name is required");
 
-  if (!position) {
-    position = await insertPosition(positionName);
+    let position = await getPosition(positionName);
+    if (!position) {
+      position = await insertPosition(positionName);
+    }
+
+    const program = await getProgramByName(programName);
+    if (!program) {
+      return sendErrorResponse("Program name not found", 404);
+    }
+
+    const company = await insertCompany(name, position.id, program.id);
+
+    return NextResponse.json(company);
+  } catch (error) {
+    if (error instanceof NextResponse) {
+      return error;
+    }
+    return sendErrorResponse("An unexpected error occurred", 500);
   }
-
-  const program = await getProgramByName(programName);
-  if (!program) {
-    return NextResponse.json({ message: "Program name not found" });
-  }
-
-  const company = await insertCompany(name, position.id, program?.id);
-
-  return NextResponse.json(company);
 }
 
 async function getCompanies() {
