@@ -62,16 +62,18 @@ export default function SavedCV() {
 
   return (
     <>
-      <div className="group relative mx-auto w-fit h-fit  ">
+      <div className="group  mx-auto flex justify-center ">
         {isLoadingCV ? (
-          <div>Loading</div>
+          <div>Please wait for a moment...</div>
         ) : cv ? (
           <div
-            className="w-full h-full p-4 border border-primary rounded-xl cursor-pointer"
+            className="w-fit h-fit border border-primary rounded-xl cursor-pointer"
             onClick={handleEdit}
           >
-            <div className="relative w-[460px] h-[660px] overflow-hidden flex items-center justify-center">
+            <div className="w-full h-full p-4">
+            <div className=" w-[460px] h-[660px] overflow-hidden leading-3">
               {templates[cv.index]}
+            </div>
             </div>
           </div>
         ) : (
