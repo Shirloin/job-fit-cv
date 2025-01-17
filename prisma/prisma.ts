@@ -1,17 +1,17 @@
 import { PrismaClient } from "@prisma/client";
 
-let prisma: PrismaClient;
+const globalForPrisma = global as typeof globalThis & {
+  prisma?: PrismaClient;
+};
 
-if (process.env.APP_ENV === "production") {
-  prisma = new PrismaClient();
-} else {
-  let globalWithPrisma = global as typeof globalThis & {
-    prisma: PrismaClient;
-  };
-  if (!globalWithPrisma.prisma) {
-    globalWithPrisma.prisma = new PrismaClient();
-  }
-  prisma = globalWithPrisma.prisma;
+const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    log: process.env.APP_ENV !== "production" ? ["query", "warn", "error"] : [],
+  });
+
+if (process.env.APP_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
 }
 
 export default prisma;
