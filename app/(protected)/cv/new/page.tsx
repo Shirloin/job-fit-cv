@@ -36,15 +36,17 @@ import { useLoading } from '@/providers/LoadingProvider';
 import { useCurrentSession } from '@/hooks/use-current-session';
 
 export default function CreateCVPage() {
-  const { session } = useCurrentSession()
-  const user = session && session.user
+  const { session } = useCurrentSession();
+  const user = session && session.user;
   const { index, setTemplate } = useTemplateStore();
   const { profile } = useProfileStore();
   const { experiences } = useExperienceStore();
   const { projects } = useProjectStore();
   const { educations } = useEducationStore();
   const { skills } = useSkillStore();
-  const { isLoading, setIsLoading } = useLoading()
+  const { isLoading, setIsLoading } = useLoading();
+
+  console.log(skills);
 
   const target = useRef(null);
   const handleDownloadPDF = async () => {
@@ -61,16 +63,15 @@ export default function CreateCVPage() {
         },
         width: pdfWidth,
 
-        windowWidth: 500
+        windowWidth: 500,
       });
     } else {
       setIsLoading(false);
     }
   };
 
-
   const handleDownloadImage = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (target.current) {
       const canvas = await html2canvas(target.current, {
         scale: 2,
@@ -85,12 +86,12 @@ export default function CreateCVPage() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   const handleSave = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     const cv = {
       profile: profile as unknown as JsonObject,
       experiences: experiences as unknown as JsonObject,
@@ -113,9 +114,9 @@ export default function CreateCVPage() {
         );
       toast.success('CV has been saved');
     } catch (error) {
-      return
+      return;
     }
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   const templates = [

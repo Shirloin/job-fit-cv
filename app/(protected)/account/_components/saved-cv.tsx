@@ -1,25 +1,26 @@
-"use client";
-import FifthTemplate from "@/components/cv-templates/FifthTemplate/page";
-import FirstTemplate from "@/components/cv-templates/FirstTemplate/page";
-import FourthTemplate from "@/components/cv-templates/FourthTemplate/page";
-import SecondTemplate from "@/components/cv-templates/SecondTemplate/page";
-import ThirdTemplate from "@/components/cv-templates/ThirdTemplate/page";
-import { Button } from "@/components/ui/button";
-import { useFetchUserCV } from "@/hooks/use-fetch-data";
-import { useEducationStore } from "@/store/education-store";
-import { useExperienceStore } from "@/store/experience-store";
-import { useProfileStore } from "@/store/profile-store";
-import { useProjectStore } from "@/store/project-store";
-import { useSkillStore } from "@/store/skill-store";
-import { useTemplateStore } from "@/store/template-store";
+'use client';
+import FifthTemplate from '@/components/cv-templates/FifthTemplate/page';
+import FirstTemplate from '@/components/cv-templates/FirstTemplate/page';
+import FourthTemplate from '@/components/cv-templates/FourthTemplate/page';
+import SecondTemplate from '@/components/cv-templates/SecondTemplate/page';
+import ThirdTemplate from '@/components/cv-templates/ThirdTemplate/page';
+import { Button } from '@/components/ui/button';
+import { useFetchUserCV } from '@/hooks/use-fetch-data';
+import { useEducationStore } from '@/store/education-store';
+import { useExperienceStore } from '@/store/experience-store';
+import { useProfileStore } from '@/store/profile-store';
+import { useProjectStore } from '@/store/project-store';
+import { useSkillStore } from '@/store/skill-store';
+import { useTemplateStore } from '@/store/template-store';
 import {
   TEducation,
   TExperience,
   TProfile,
   TProject,
   TSkill,
-} from "@/types/cv";
-import { useRouter } from "next/navigation";
+} from '@/types/cv';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function SavedCV() {
   const {
@@ -57,7 +58,7 @@ export default function SavedCV() {
       const skills = cv.skills as TSkill[];
       setSkillStore(skills);
     }
-    router.push("/cv/new");
+    router.push('/cv/new');
   };
 
   return (
@@ -71,9 +72,9 @@ export default function SavedCV() {
             onClick={handleEdit}
           >
             <div className="w-full h-full p-4">
-            <div className=" w-[460px] h-[660px] overflow-hidden leading-3">
-              {templates[cv.index]}
-            </div>
+              <div className=" w-[460px] h-[660px] overflow-hidden leading-3">
+                {templates[cv.index]}
+              </div>
             </div>
           </div>
         ) : (

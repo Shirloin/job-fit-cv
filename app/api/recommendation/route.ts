@@ -1,8 +1,9 @@
-import CompanyRepository from "@/repositories/CompanyRepository";
-import UserRepository from "@/repositories/UserRepository";
-import { TCompany } from "@/types/company";
-import axios from "axios";
-import { NextRequest, NextResponse } from "next/server";
+import CompanyRepository from '@/repositories/CompanyRepository';
+import UserRepository from '@/repositories/UserRepository';
+import { TCompany } from '@/types/company';
+import axios from 'axios';
+import { log } from 'console';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const { skills, projectDescription, experienceDescription, userId } =
@@ -17,6 +18,7 @@ export async function POST(req: NextRequest) {
   );
 
   const data = response.data;
+  console.log(response);
   const recommendedCompany = data.slice(0, 5).map((e: any) => e.Company);
   const companies = await Promise.all(
     recommendedCompany.map(async (name: string) => {

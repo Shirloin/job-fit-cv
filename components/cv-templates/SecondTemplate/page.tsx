@@ -1,12 +1,13 @@
-"use client";
+'use client';
 
-import { TCV } from "@/types/cv";
-import SecondTemplateEducation from "./_components/second-template-education";
-import SecondTemplateExperience from "./_components/second-template-experience";
-import SecondTemplateProfile from "./_components/second-template-profile";
-import SecondTemplateProject from "./_components/second-template-project";
-import SecondTemplateContact from "./_components/second-template-contact";
-import SecondTemplateSummary from "./_components/second-template-summary";
+import { TCV } from '@/types/cv';
+import SecondTemplateEducation from './_components/second-template-education';
+import SecondTemplateExperience from './_components/second-template-experience';
+import SecondTemplateProfile from './_components/second-template-profile';
+import SecondTemplateProject from './_components/second-template-project';
+import SecondTemplateContact from './_components/second-template-contact';
+import SecondTemplateSummary from './_components/second-template-summary';
+import SecondTemplateSkill from './_components/second-template-skill';
 
 export default function SecondTemplate({ cv = null }: { cv?: TCV | null }) {
   return (
@@ -24,6 +25,8 @@ export default function SecondTemplate({ cv = null }: { cv?: TCV | null }) {
             <SecondTemplateEducation savedEducations={cv?.educations} />
             <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
             <SecondTemplateProject savedProjects={cv?.projects} />
+            <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
+            <SecondTemplateSkill savedSkills={cv?.skills} />
           </div>
         </div>
 
@@ -33,7 +36,7 @@ export default function SecondTemplate({ cv = null }: { cv?: TCV | null }) {
             <SecondTemplateExperience savedExperiences={cv?.experiences} />
             
           </div>
-          <div className="w-[155px] pl-2 flex flex-col items-start bg-red-500">
+          <ddiv className="w-[155px] pl-2 flex flex-col items-start bg-red-500">
             <SecondTemplateSkill savedSkills={cv?.skills} />
             
           </div>
