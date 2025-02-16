@@ -1,13 +1,8 @@
 import { useEducationStore } from '@/store/education-store';
 import { TEducation } from '@/types/cv';
 
-export default function FirstTemplateEducation({
-  savedEducations = null,
-}: {
-  savedEducations?: TEducation[] | null;
-}) {
-  const { educations: storeEducations } = useEducationStore();
-  const educations = storeEducations ?? savedEducations;
+export default function FirstTemplateEducation() {
+  const { educations } = useEducationStore();
 
   return (
     <>

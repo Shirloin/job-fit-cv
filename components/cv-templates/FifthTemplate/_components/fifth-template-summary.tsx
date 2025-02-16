@@ -1,14 +1,10 @@
 import { useProfileStore } from '@/store/profile-store';
 import { TProfile } from '@/types/cv';
 
-export default function FifthTemplateSummary({
-  profile = null,
-}: {
-  profile?: TProfile | null;
-}) {
+export default function FifthTemplateSummary() {
   const { profile: user } = useProfileStore();
 
-  const summary = profile ? profile.summary : user.summary;
+  const summary =user.summary;
 
   return (
     <>

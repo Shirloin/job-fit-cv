@@ -21,8 +21,8 @@ interface StudentCVModalProps {
 export default function StudentCVModal({ id }: StudentCVModalProps) {
   const { data: cv, isLoading, isError } = useFetchStudentCV(id);
   const templates = [
-    <FirstTemplate key={1} cv={cv} />,
-    <ThirdTemplate key={3} cv={cv} />,
+    <FirstTemplate key={1} />,
+    <ThirdTemplate key={3} />,
   ];
   const target = useRef(null);
   const handleDownloadPDF = async () => {

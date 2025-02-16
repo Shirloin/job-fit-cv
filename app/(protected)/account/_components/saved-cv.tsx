@@ -28,12 +28,15 @@ export default function SavedCV() {
     isLoading: isLoadingCV,
     isError: isErrorCV,
   } = useFetchUserCV();
+
+  
+
   const templates = [
-    <FirstTemplate key={1} cv={cv} />,
-    <SecondTemplate key={2} cv={cv} />,
-    <ThirdTemplate key={3} cv={cv} />,
-    <FourthTemplate key={4} cv={cv} />,
-    <FifthTemplate key={5} cv={cv} />,
+    <FirstTemplate key={1}  />,
+    <SecondTemplate key={2}  />,
+    <ThirdTemplate key={3}  />,
+    <FourthTemplate key={4}  />,
+    <FifthTemplate key={5}  />,
   ];
   const router = useRouter();
   const setTemplate = useTemplateStore((state) => state.setTemplate);
@@ -44,6 +47,20 @@ export default function SavedCV() {
   const setEducationStore = useEducationStore((state) => state.setInitialData);
   const setProjectStore = useProjectStore((state) => state.setInitialData);
   const setSkillStore = useSkillStore((state) => state.setInitialData);
+  if(!isLoadingCV && cv){
+    setTemplate(cv.index);
+      const profile = cv.profile as TProfile;
+      setProfileStore(profile);
+      const experiences = cv.experiences as TExperience[];
+      setExperienceStore(experiences);
+      const educations = cv.educations as TEducation[];
+      setEducationStore(educations);
+      const projects = cv.projects as TProject[];
+      setProjectStore(projects);
+      const skills = cv.skills as TSkill[];
+      setSkillStore(skills);
+  }
+
   const handleEdit = () => {
     if (cv) {
       setTemplate(cv.index);

@@ -7,20 +7,20 @@ import ThirdTemplateEducation from './_components/third-template-education';
 import ThirdTemplateSkill from './_components/third-template-skill';
 import { TCV } from '@/types/cv';
 
-export default function ThirdTemplate({ cv = null }: { cv?: TCV | null }) {
+export default function ThirdTemplate() {
   return (
     <>
       <div className="w-full h-full flex justify-between font-sans text-start">
         <div className="w-[325px] flex flex-col">
-          <ThirdTemplateProfile profile={cv?.profile} />
+          <ThirdTemplateProfile />
           <hr className="w-full border-primary mt-4 mb-1" />
-          <ThirdTemplateExperience savedExperiences={cv?.experiences} />
-          <ThirdTemplateProject savedProjects={cv?.projects} />
+          <ThirdTemplateExperience />
+          <ThirdTemplateProject  />
         </div>
         <hr className="border-r border-primary h-full " />
         <div className="w-[135px] pl-2 flex flex-col items-start">
-          <ThirdTemplateContact profile={cv?.profile} />
-          <ThirdTemplateEducation savedEducations={cv?.educations} />
+          <ThirdTemplateContact  />
+          <ThirdTemplateEducation />
           <ThirdTemplateSkill />
         </div>
       </div>

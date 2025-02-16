@@ -34,6 +34,7 @@ import FourthTemplate from '@/components/cv-templates/FourthTemplate/page';
 import FifthTemplate from '@/components/cv-templates/FifthTemplate/page';
 import { useLoading } from '@/providers/LoadingProvider';
 import { useCurrentSession } from '@/hooks/use-current-session';
+import { useSaveCV } from '@/hooks/use-mutation';
 
 export default function CreateCVPage() {
   const { session } = useCurrentSession();
@@ -46,7 +47,8 @@ export default function CreateCVPage() {
   const { skills } = useSkillStore();
   const { isLoading, setIsLoading } = useLoading();
 
-  console.log(skills);
+  const saveCV = useSaveCV()
+
 
   const target = useRef(null);
   const handleDownloadPDF = async () => {
@@ -104,7 +106,8 @@ export default function CreateCVPage() {
       const skill = skills.map((s) => s.name);
       const project = projects.map((p) => p.projectDescription);
       const experience = experiences.map((e) => e.summary);
-      const updatedUser = await UserService.saveUserCV(user.id, cv);
+      await saveCV.mutateAsync( {cv})
+      // const updatedUser = await UserService.saveUserCV(user.id, cv);
       const userWithRecommendation =
         await GeneratorService.generateRecommendedJob(
           skill,

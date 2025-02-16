@@ -17,7 +17,13 @@ import jsPDF from "jspdf";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { TUser } from "@/types/user";
-import { TCV } from "@/types/cv";
+import { TCV, TEducation, TExperience, TProfile, TProject, TSkill } from "@/types/cv";
+import { useTemplateStore } from "@/store/template-store";
+import { useProfileStore } from "@/store/profile-store";
+import { useExperienceStore } from "@/store/experience-store";
+import { useEducationStore } from "@/store/education-store";
+import { useProjectStore } from "@/store/project-store";
+import { useSkillStore } from "@/store/skill-store";
 
 interface StudentCVSheetProps
   extends React.ComponentPropsWithRef<typeof Sheet> {
@@ -31,11 +37,11 @@ export default function StudentCVSheet({
   const { data: cv, isLoading, isError } = useFetchStudentCV(student.username!);
 
   const templates = [
-    <FirstTemplate key={1} cv={cv} />,
-    <SecondTemplate key={2} cv={cv} />,
-    <ThirdTemplate key={3} cv={cv} />,
-    <FourthTemplate key={4} cv={cv} />,
-    <FifthTemplate key={5} cv={cv} />,
+    <FirstTemplate key={1} />,
+    <SecondTemplate key={2} />,
+    <ThirdTemplate key={3} />,
+    <FourthTemplate key={4} />,
+    <FifthTemplate key={5} />,
   ];
   const target = useRef(null);
   const handleDownloadPDF = async () => {
@@ -77,6 +83,27 @@ export default function StudentCVSheet({
       document.body.removeChild(link);
     }
   };
+   const setTemplate = useTemplateStore((state) => state.setTemplate);
+    const setProfileStore = useProfileStore((state) => state.setInitialData);
+    const setExperienceStore = useExperienceStore(
+      (state) => state.setInitialData
+    );
+    const setEducationStore = useEducationStore((state) => state.setInitialData);
+    const setProjectStore = useProjectStore((state) => state.setInitialData);
+    const setSkillStore = useSkillStore((state) => state.setInitialData);
+    if(!isLoading && cv){
+      setTemplate(cv.index);
+        const profile = cv.profile as TProfile;
+        setProfileStore(profile);
+        const experiences = cv.experiences as TExperience[];
+        setExperienceStore(experiences);
+        const educations = cv.educations as TEducation[];
+        setEducationStore(educations);
+        const projects = cv.projects as TProject[];
+        setProjectStore(projects);
+        const skills = cv.skills as TSkill[];
+        setSkillStore(skills);
+    }
   return (
     <>
       <Sheet {...props}>

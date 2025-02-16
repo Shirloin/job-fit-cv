@@ -2,21 +2,8 @@ import { useSkillStore } from '@/store/skill-store';
 import { TSkill } from '@/types/cv';
 import { useEffect, useState } from 'react';
 
-export default function FifthTemplateSkill({
-  savedSkills,
-}: {
-  savedSkills?: TSkill[] | null;
-}) {
-  const { skills: storeSkills } = useSkillStore();
-  const [skills, setSkills] = useState(storeSkills ?? savedSkills);
-
-  useEffect(() => {
-    if (storeSkills.length > 0) {
-      setSkills(storeSkills);
-    } else if (savedSkills && savedSkills.length > 0) {
-      setSkills(savedSkills);
-    }
-  }, [savedSkills, storeSkills]);
+export default function FifthTemplateSkill() {
+  const { skills } = useSkillStore();
 
   if (skills.length < 1) {
     return null;

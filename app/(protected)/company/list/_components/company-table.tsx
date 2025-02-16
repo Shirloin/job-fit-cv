@@ -28,6 +28,8 @@ export function CompanyTable({
     [programs, user]
   );
 
+  const [datas, setDatas] = useState(companies)
+
   const data = useMemo(() => companies, [companies])
 
   const filterFields: DataTableFilterField<any>[] = useMemo(
@@ -60,7 +62,7 @@ export function CompanyTable({
   );
 
   const { table } = useDataTable<TCompany, unknown>({
-    data: data,
+    data: datas,
     columns,
     pageCount: 10,
     defaultPerPage: 10,

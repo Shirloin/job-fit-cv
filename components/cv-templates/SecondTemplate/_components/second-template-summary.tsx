@@ -2,14 +2,10 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useProfileStore } from "@/store/profile-store";
 import { TProfile } from "@/types/cv";
 
-export default function SecondTemplateSummary({
-  profile = null,
-}: {
-  profile?: TProfile | null;
-}) {
+export default function SecondTemplateSummary() {
   const { profile: user } = useProfileStore();
 
-  const summary = profile ? profile.summary : user.summary;
+  const summary =  user.summary;
 
   return (
     <>

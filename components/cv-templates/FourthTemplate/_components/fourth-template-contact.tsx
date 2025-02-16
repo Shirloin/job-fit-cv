@@ -1,16 +1,17 @@
 import { useProfileStore } from "@/store/profile-store";
 import { TProfile } from "@/types/cv";
 
-export default function FourthTemplateContact({
-  profile = null,
-}: {
-  profile?: TProfile | null;
-}) {
+export default function FourthTemplateContact() {
   const { profile: user } = useProfileStore();
-  const phone = profile ? profile.phone : user.phone;
-  const email = profile ? profile.email : user.email;
-  const github = profile ? profile.github : user.github;
-  const linkedin = profile ? profile.linkedin : user.linkedin;
+
+  const fullName = user.firstName + ' ' + user.lastName;
+  const position =  user.position;
+  const phone = user.phone;
+  const summary = user.summary;
+  const email =  user.email;
+  const github =  user.github;
+  const linkedin = user.linkedin;
+
 
   return (
     <>

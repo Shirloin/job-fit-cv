@@ -2,22 +2,16 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { useProfileStore } from '@/store/profile-store';
 import { TProfile } from '@/types/cv';
 
-export default function FirstTemplateProfile({
-  profile = null,
-}: {
-  profile?: TProfile | null;
-}) {
+export default function FirstTemplateProfile() {
   const { profile: user } = useProfileStore();
 
-  const fullName = profile
-    ? profile.firstName + ' ' + profile.lastName
-    : user.firstName + ' ' + user.lastName;
-  const position = profile ? profile.position : user.position;
-  const phone = profile ? profile.phone : user.phone;
-  const email = profile ? profile.email : user.email;
-  const github = profile ? profile.github : user.github;
-  const linkedin = profile ? profile.linkedin : user.linkedin;
-  const summary = profile ? profile.summary : user.summary;
+  const fullName = user.firstName + ' ' + user.lastName;
+  const position =  user.position;
+  const phone = user.phone;
+  const summary = user.summary;
+  const email =  user.email;
+  const github =  user.github;
+  const linkedin = user.linkedin;
 
   return (
     <>

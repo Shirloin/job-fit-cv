@@ -1,13 +1,8 @@
 import { useProjectStore } from '@/store/project-store';
 import { TProject } from '@/types/cv';
 
-export default function ThirdTemplateProject({
-  savedProjects = null,
-}: {
-  savedProjects?: TProject[] | null;
-}) {
-  const { projects: storeProjects } = useProjectStore();
-  const projects = storeProjects ?? savedProjects;
+export default function ThirdTemplateProject() {
+  const { projects } = useProjectStore();
 
   if (projects.length < 1) {
     return null;

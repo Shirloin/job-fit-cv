@@ -1,13 +1,8 @@
 import { useExperienceStore } from '@/store/experience-store';
 import { TExperience } from '@/types/cv';
 
-export default function FirstTemplateExperience({
-  savedExperiences = null,
-}: {
-  savedExperiences?: TExperience[] | null;
-}) {
-  const { experiences: storeExperiences } = useExperienceStore();
-  const experiences = savedExperiences ?? storeExperiences;
+export default function FirstTemplateExperience() {
+  const { experiences } = useExperienceStore();
 
   if (experiences.length < 1) {
     return null;

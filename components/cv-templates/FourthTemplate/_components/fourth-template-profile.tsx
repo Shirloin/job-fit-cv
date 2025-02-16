@@ -1,21 +1,16 @@
 import { useProfileStore } from "@/store/profile-store";
 import { TProfile } from "@/types/cv";
 
-export default function FourthTemplateProfile({
-  profile = null,
-}: {
-  profile?: TProfile | null;
-}) {
+export default function FourthTemplateProfile() {
   const { profile: user } = useProfileStore();
-  const fullName = profile
-    ? profile.firstName + " " + profile.lastName
-    : user.firstName + " " + user.lastName;
-  const position = profile ? profile.position : user.position;
-  const summary = profile ? profile.summary : user.summary;
-  const phone = profile ? profile.phone : user.phone;
-  const email = profile ? profile.email : user.email;
-  const github = profile ? profile.github : user.github;
-  const linkedin = profile ? profile.linkedin : user.linkedin;
+  const fullName = user.firstName + ' ' + user.lastName;
+  const position =  user.position;
+  const phone = user.phone;
+  const email =  user.email;
+  const github =  user.github;
+  const linkedin = user.linkedin;
+  const summary = user.summary
+
 
   return (
     <div className="flex flex-col items-start mr-1 w-full">

@@ -9,24 +9,24 @@ import SecondTemplateContact from './_components/second-template-contact';
 import SecondTemplateSummary from './_components/second-template-summary';
 import SecondTemplateSkill from './_components/second-template-skill';
 
-export default function SecondTemplate({ cv = null }: { cv?: TCV | null }) {
+export default function SecondTemplate() {
   return (
     <>
       <div className="w-full h-full flex flex-col font-sans">
-        <SecondTemplateProfile profile={cv?.profile} />
-        <SecondTemplateContact profile={cv?.profile} />
+        <SecondTemplateProfile  />
+        <SecondTemplateContact  />
         <div className="border-t border-gray-200 w-[90%] mb-1 mt-3 m-auto"></div>
         <div className="flex gap-1 min-h-full justify-center">
           <div className="flex flex-col items-center">
-            <SecondTemplateSummary profile={cv?.profile} />
+            <SecondTemplateSummary />
             <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
-            <SecondTemplateExperience savedExperiences={cv?.experiences} />
+            <SecondTemplateExperience  />
             <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
-            <SecondTemplateEducation savedEducations={cv?.educations} />
+            <SecondTemplateEducation/>
             <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
-            <SecondTemplateProject savedProjects={cv?.projects} />
+            <SecondTemplateProject />
             <div className="border-t border-gray-200 w-[90%] mb-2 mt-3 m-auto"></div>
-            <SecondTemplateSkill savedSkills={cv?.skills} />
+            <SecondTemplateSkill  />
           </div>
         </div>
 
