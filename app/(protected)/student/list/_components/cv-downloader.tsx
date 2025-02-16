@@ -57,7 +57,7 @@ export function CVDownloader({ students }: { students: TUser[] }) {
 
                 if (cv) {
                     const TemplateComponent = templates[cv.index];
-                    const target = renderToHiddenContainer(<TemplateComponent cv={cv} />);
+                    const target = renderToHiddenContainer(<TemplateComponent  />);
 
                     await new Promise(resolve => setTimeout(resolve, 500));
 
