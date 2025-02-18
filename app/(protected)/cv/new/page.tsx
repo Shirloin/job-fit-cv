@@ -47,8 +47,7 @@ export default function CreateCVPage() {
   const { skills } = useSkillStore();
   const { isLoading, setIsLoading } = useLoading();
 
-  const saveCV = useSaveCV()
-
+  const saveCV = useSaveCV();
 
   const target = useRef(null);
   const handleDownloadPDF = async () => {
@@ -106,7 +105,7 @@ export default function CreateCVPage() {
       const skill = skills.map((s) => s.name);
       const project = projects.map((p) => p.projectDescription);
       const experience = experiences.map((e) => e.summary);
-      await saveCV.mutateAsync( {cv})
+      await saveCV.mutateAsync({ cv });
       // const updatedUser = await UserService.saveUserCV(user.id, cv);
       const userWithRecommendation =
         await GeneratorService.generateRecommendedJob(

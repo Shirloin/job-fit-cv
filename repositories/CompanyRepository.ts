@@ -1,4 +1,4 @@
-import prisma from "@/prisma/prisma";
+import prisma from '@/prisma/prisma';
 
 const SCHEMA = prisma.company;
 
@@ -35,10 +35,26 @@ export default class CompanyRepository {
       },
     });
   };
+
+  static getCompanyByPosition = async (name: string, position: string) => {
+    return SCHEMA.findFirst({
+      where: {
+        name: name,
+        position: {
+          name: { contains: position, mode: 'insensitive' },
+        },
+      },
+      include: {
+        program: true,
+        position: true,
+      },
+    });
+  };
+
   static getCompanyByNameOrIndustry = async (key: string) => {
     return SCHEMA.findMany({
       where: {
-        OR: [{ name: { contains: key, mode: "insensitive" } }],
+        OR: [{ name: { contains: key, mode: 'insensitive' } }],
       },
     });
   };
@@ -48,16 +64,16 @@ export default class CompanyRepository {
       where: {
         recomendedToUsers: {
           some: {
-            username: nim
-          }
-        }
+            username: nim,
+          },
+        },
       },
       include: {
         position: true,
-        program: true
-      }
-    })
-  }
+        program: true,
+      },
+    });
+  };
 
   static insertCompany = async (
     name: string,

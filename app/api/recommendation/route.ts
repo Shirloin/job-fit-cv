@@ -1,6 +1,7 @@
 import CompanyRepository from '@/repositories/CompanyRepository';
 import UserRepository from '@/repositories/UserRepository';
 import { TCompany } from '@/types/company';
+import { JsonObject } from '@prisma/client/runtime/library';
 import axios from 'axios';
 import { log } from 'console';
 import { NextRequest, NextResponse } from 'next/server';
@@ -18,24 +19,38 @@ export async function POST(req: NextRequest) {
   );
 
   const data = response.data;
-  console.log(response);
-  const recommendedCompany = data.slice(0, 5).map((e: any) => e.Company);
+
   const companies = await Promise.all(
-    recommendedCompany.map(async (name: string) => {
-      let company = getCompanyByName(name);
+    data.map(async (d: { Company: string; Position: string }) => {
+      let company = await getCompanyByPosition(d.Company, d.Position);
       if (company) {
         return company;
       }
       return null;
     })
   );
-  const validCompanies = companies.filter((company) => company != null);
+
+  // const companies = await Promise.all(
+  //   recommendedCompany.map(async (position: string) => {
+  //     let company = await getCompanyByPosition(name, position);
+  //     console.log(position);
+  //     console.log(company);
+  //     if (company) {
+  //       return company;
+  //     }
+  //     return null;
+  //   })
+  // );
+
+  console.log('rrrr', companies);
+
+  const validCompanies = companies.filter((company: any) => company != null);
   const user = await setUserRecommendedCompany(userId, validCompanies);
   return NextResponse.json({ user });
 }
 
-async function getCompanyByName(name: string) {
-  return await CompanyRepository.getCompanyByName(name);
+async function getCompanyByPosition(name: string, position: string) {
+  return await CompanyRepository.getCompanyByPosition(name, position);
 }
 
 async function setUserRecommendedCompany(
